@@ -9,6 +9,7 @@ using Croffle.HttpWaffle.Abstract;
 using System.Data;
 using System.Drawing;
 using Croffle.Classes;
+using System.Windows.Media;
 
 namespace Croffle.HttpWaffle
 {
@@ -113,11 +114,11 @@ namespace Croffle.HttpWaffle
                     try { status = htmlA.GetInfoByNode("td[9]/i", ref temp); }
                     catch (NullReferenceException) { status = "block"; }
                     bool done;
-                    int color_argb = Color.RoyalBlue.ToArgb();
-                    if (status == "verified") { done = true; color_argb = Color.LimeGreen.ToArgb(); }
+                    int color_argb = ToArgb(Colors.RoyalBlue);
+                    if (status == "verified") { done = true; color_argb = ToArgb(Colors.LimeGreen); }
                     else
                     {
-                        if(deadline < DateTime.Now) color_argb = Color.OrangeRed.ToArgb();
+                        if (deadline < DateTime.Now) color_argb = ToArgb(Colors.OrangeRed);
                         done = false;
                     }
                     
@@ -176,6 +177,17 @@ ORDER BY contentsID DESC";
 
             return lectures;
         }
+
+        private int ToArgb(int a, int r, int g, int b)
+        {
+            return (a << 24) | (r << 16) | (g << 8) | b;
+        }
+
+        private int ToArgb(Color color)
+        {
+            return ToArgb(color.A, color.R, color.G, color.B);
+        }
+
 
         /// <summary>
         ///Main에서 POSTData의 형태를 잡아줌.
