@@ -4,49 +4,65 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CROFFLE_WPF.WPF_xamls"
-             mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="125">
-    <Grid x:Name="main_Grid">
-        <Border x:Name="main_Border" BorderBrush="Black" BorderThickness="1"/>
+             mc:Ignorable="d" d:DesignHeight="100" d:DesignWidth="125">
+    <Grid x:Name="main_Grid" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="LebelsBox_Border" Grid.Row="0" BorderBrush="Black" BorderThickness="0.5" Margin="0 0 0 0" Padding="0 0 0 0"/>
+        <Border x:Name="ContentsBox_Border" Grid.Row="1" BorderBrush="Black" BorderThickness="0.5" Margin="0 0 0 0" Padding="0 0 0 0"/>
+
 
         <!--일자 및 특일 정보 Lebel-->
-        <Label x:Name="dayNum_lb" Content="00" HorizontalAlignment="Center" VerticalAlignment="Top" Height="13" Margin="0 0 0 0" Padding="0 -1 0 0" FontFamily="Comic Sans MS"/>
-        <Label x:Name="dailyInfo_lb" Content="~~의 날" HorizontalAlignment="Center" VerticalAlignment="Top" Height="16" Margin="0 13 0 0" Padding="0 0 0 0" FontFamily="/CROFFLE_WPF;component/Font/#Dongle" FontSize="14"/>
+        <Grid x:Name="Labels" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
+            <Label x:Name="dayNum_lb" Grid.Row="0" Content="00" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="10"/>
+            <Label x:Name="dailyInfo_lb" Grid.Row="1" Content="~~의 날" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="10"/>
+        </Grid>
+    
         <!--1번째 스케줄 컨텐츠-->
-        <Grid x:Name="contents_Grid" Height="70" Margin="0 30 0 0">
-            <Border x:Name="contents_Border" BorderBrush="Black" BorderThickness="1"/>
-            <Label x:Name="Schedule1_lb" Content="Schedule Name" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
-                   Margin="0 3 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                   FontFamily="/CROFFLE_WPF;Component/Font/#Dongle" FontSize="16" BorderBrush="Black" BorderThickness="1" >
-                <Label.Resources>
-                    <Style TargetType="Border">
-                        <Setter x:Name="Schedule1_border"  Property="CornerRadius" Value="7"/>
-                    </Style>
-                </Label.Resources>
-            </Label>
+        <Grid x:Name="contents_Grid" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="content1" Grid.Row="1" Visibility="Hidden">
+                <Border BorderBrush="black" BorderThickness="1" CornerRadius="7"/>
+                <Label x:Name="content1_lb" Content="Content Name" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
+                   Margin="0 0 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                   FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="8"/>
+            </Grid>
+
 
             <!--2번째 스케줄 컨텐츠-->
-            <Label x:Name="Schedule2_lb" Content="Schedule Name" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
-       Margin="0 25 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-       FontFamily="/CROFFLE_WPF;Component/Font/#Dongle" FontSize="16" BorderBrush="Black" BorderThickness="1" >
-                <Label.Resources>
-                    <Style TargetType="Border">
-                        <Setter x:Name="Schedule2_border" Property="CornerRadius" Value="7"/>
-                    </Style>
-                </Label.Resources>
-            </Label>
+            <Grid x:Name="content2" Grid.Row="3" Visibility="Hidden">
+                <Border BorderBrush="black" BorderThickness="1" CornerRadius="7"/>
+                <Label x:Name="content2_lb" Content="Content Name" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
+                    Margin="0 -1 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="8"/>
+            </Grid>
 
             <!--3번째 스케줄 컨텐츠-->
-            <Label x:Name="Schedule3_lb" Content="외 0개의 일정 있음" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
-       Margin="0 47 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-       FontFamily="/CROFFLE_WPF;Component/Font/#Dongle" FontSize="16" BorderBrush="Black" BorderThickness="1" >
-                <Label.Resources>
-                    <Style TargetType="Border">
-                        <Setter x:Name="Schedule3_border" Property="CornerRadius" Value="7"/>
-                    </Style>
-                </Label.Resources>
-            </Label>
+            <Grid x:Name="content3" Grid.Row="5" Visibility="Hidden">
+                <Border BorderBrush="black" BorderThickness="1" CornerRadius="7"/>
+                <Label x:Name="Schedule3_lb" Content="외 0개의 일정 있음" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
+                    Margin="0 -1 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="8"/>
+            </Grid>
+            
         </Grid>
     </Grid>
 </UserControl>

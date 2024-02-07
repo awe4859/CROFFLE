@@ -138,6 +138,9 @@
     <Compile Include="HttpWaffle\Waffle.cs" />
     <Compile Include="HttpWaffle\WafflePage.cs" />
     <Compile Include="HttpWaffle\WkuWebReq.cs" />
+    <Compile Include="WPF_xamls\Calendar.xaml.cs">
+      <DependentUpon>Calendar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF_xamls\DailyControl.xaml.cs">
       <DependentUpon>DailyControl.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,8 @@
     <Resource Include="Font\Dongle-Bold.ttf" />
     <Resource Include="Font\Dongle-Light.ttf" />
     <Resource Include="Font\Dongle-Regular.ttf" />
+    <Resource Include="Font\KCC-Ganpan.ttf" />
+    <Resource Include="Font\KCC-Ganpan.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -193,6 +198,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="WPF_xamls\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF_xamls\DailyControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
