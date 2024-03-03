@@ -1,9 +1,11 @@
-﻿<Window x:Class="CROFFLE_WPF.WPF_xamls.MainGround"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CROFFLE_WPF"
+        xmlns:local1="clr-namespace:CROFFLE_WPF.WPF_xamls"
+        x:Class="CROFFLE_WPF.WPF_xamls.MainGround"
         mc:Ignorable="d"
         Title="MainGround" Height="735" Width="1050" WindowStyle="None" Background="Transparent" MinWidth="1050" MinHeight="730" AllowsTransparency="True">
     <Grid>
@@ -11,7 +13,7 @@
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-     
+
         <!--TitleBar Area-->
         <Border x:Name="titleBar_bd" Grid.Row="0" Background="#FF3CB1FF" CornerRadius="10 10 0 0"/>
         <Grid x:Name="titleBarArea" Grid.Row="0">
@@ -38,7 +40,7 @@
                 <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="25" BorderThickness="0" Foreground="White" Background="Transparent"/>
             </Grid>
         </Grid>
-        
+
         <!--Main Area-->
         <Border x:Name="main_bd" Grid.Row="1" BorderThickness="0" CornerRadius="0 0 10 10" Background="Transparent"/>
         <Grid x:Name="mainArea" Grid.Row="1">
@@ -46,7 +48,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="880"/>
             </Grid.ColumnDefinitions>
-            
+
             <!--Main Menu-->
             <Border x:Name="menu_bd" Grid.Column="0" BorderThickness="0" CornerRadius="0 0 0 10" Background="#FF3CB1FF"/>
             <Grid x:Name="mainMenuArea" Grid.Column="0">
@@ -61,7 +63,6 @@
                 <Label x:Name="croffle_lb" Grid.Row="0" Content="CROFFLE" FontFamily="/Font/#KCC-Ganpan" FontSize="30"
                        Margin="0 0 0 0" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 
-                <!--페이지 선택 버튼-->
                 <Grid x:Name="page_SelectArea" Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="6*"/>
@@ -128,7 +129,7 @@
                         <Button x:Name="waffleBtn" Background="Transparent" BorderThickness="0"/>
                     </Grid>
                 </Grid>
-                
+
                 <!--메뉴 버튼 영역-->
                 <Grid x:Name="menuBtnArea" Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -169,7 +170,7 @@
                     </Grid.ColumnDefinitions>
                     <ProgressBar Grid.Column="1" BorderThickness="0" Background="WhiteSmoke" Visibility="Hidden">
                         <ProgressBar.Resources>
-                            <Style TargetType="Border">
+                            <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5"/>
                             </Style>
                         </ProgressBar.Resources>
