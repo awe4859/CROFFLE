@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CROFFLE_WPF.WPF_xamls"
+             xmlns:local="clr-namespace:CROFFLE_WPF"
              mc:Ignorable="d" d:DesignHeight="100" d:DesignWidth="125">
     <Grid x:Name="main_Grid" Background="Transparent">
         <Grid.RowDefinitions>
@@ -22,9 +22,9 @@
             </Grid.RowDefinitions>
 
             <Label x:Name="dayNum_lb" Grid.Row="0" Content="00" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="10"/>
+                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="10"/>
             <Label x:Name="dailyInfo_lb" Grid.Row="1" Content="~~의 날" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="10"/>
+                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="10"/>
         </Grid>
     
         <!--1번째 스케줄 컨텐츠-->
@@ -43,7 +43,7 @@
                 <Border BorderBrush="black" BorderThickness="1" CornerRadius="7"/>
                 <Label x:Name="content1_lb" Content="Content Name" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
                    Margin="0 0 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                   FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="8"/>
+                   FontFamily="/Font/#KCC-Ganpan" FontSize="8"/>
             </Grid>
 
 
@@ -52,7 +52,7 @@
                 <Border BorderBrush="black" BorderThickness="1" CornerRadius="7"/>
                 <Label x:Name="content2_lb" Content="Content Name" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
                     Margin="0 -1 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="8"/>
+                    FontFamily="/Font/#KCC-Ganpan" FontSize="8"/>
             </Grid>
 
             <!--3번째 스케줄 컨텐츠-->
@@ -60,7 +60,7 @@
                 <Border BorderBrush="black" BorderThickness="1" CornerRadius="7"/>
                 <Label x:Name="Schedule3_lb" Content="외 0개의 일정 있음" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="125"
                     Margin="0 -1 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    FontFamily="/CROFFLE_WPF;component/Font/#KCC-Ganpan" FontSize="8"/>
+                    FontFamily="/Font/#KCC-Ganpan" FontSize="8"/>
             </Grid>
             
         </Grid>
