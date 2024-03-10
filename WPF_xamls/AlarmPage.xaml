@@ -11,19 +11,18 @@
 
     <Grid x:Name="Alarm">
         <Label Content="알림 활성화" Margin="254,11,52,259" FontWeight="Bold" FontSize="15"/>
-        
+        <local:Onoff_Control Margin="347,16,13,263"/>
         <Rectangle Stroke="#FFE0E0E0" Margin="33,53,51,190" RadiusX="10" RadiusY="10" Fill="#FFE0E0E0"/>
         <Rectangle Stroke="#FFE0E0E0" Margin="39,58,316,195" RadiusX="10" RadiusY="10" Fill="#FFE74C3C"/>
         <Label Content="S" Margin="49,58,326,203" FontWeight="Bold" FontSize="25" Foreground="White"/>
         <Label Content="~ 02.18 - 12:00" Margin="99,54,174,207" FontSize="16" Foreground="Black"/>
         <Label Content="필기시험" Margin="163,76,110,185" FontSize="16" Foreground="Black"/>
-
+    
         <Rectangle Stroke="#FFE0E0E0" Margin="33,123,51,120" RadiusX="10" RadiusY="10" Fill="#FFE0E0E0"/>
         <Rectangle Stroke="#FFE0E0E0" Margin="39,128,316,125" RadiusX="10" RadiusY="10" Fill="#FF3498DB"/>
         <Label Content="T" Margin="49,128,326,133" FontWeight="Bold" FontSize="25" Foreground="White"/>
         <Label Content="~ 02.18 - 12:00" Margin="99,122,174,139" FontSize="16" Foreground="Black"/>
         <Label Content="글쓰기 보고서" Margin="163,146,110,115" FontSize="16" Foreground="Black"/>
-
 
         <Rectangle Stroke="#FFE0E0E0" Margin="33,193,51,50" RadiusX="10" RadiusY="10" Fill="#FFE0E0E0"/>
         <Rectangle Stroke="#FFE0E0E0" Margin="39,198,316,55" RadiusX="10" RadiusY="10" Fill="#FFF1C40F"/>
