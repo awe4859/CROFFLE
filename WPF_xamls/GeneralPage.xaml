@@ -1,0 +1,29 @@
+﻿<Page x:Class="CROFFLE_WPF.WPF_xamls.GeneralPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CROFFLE_WPF.WPF_xamls"
+      mc:Ignorable="d" 
+           d:DesignHeight="298" d:DesignWidth="400"
+      Title="GeneralPage">
+
+    <Grid x:Name="GeneralMain">
+        <Label Content="시스템" Margin="18,6,314,261" Grid.Row="2" FontWeight="Bold" FontSize="16"/>
+        <Rectangle Stroke="Black" Margin="10,41,10,189" Grid.Row="2" RadiusX="10" RadiusY="10"/>
+        <Rectangle Stroke="Black" Margin="10,151,10,13" Grid.Row="2" RadiusX="10" RadiusY="10"/>
+        <Label Content="달력" Margin="18,116,294,150" Grid.Row="2" FontWeight="Bold" FontSize="16"/>
+        <Label Content="·  윈도우 시작 시 자동시작" Margin="24,46,141,220" FontWeight="Bold" FontSize="13"/>
+        <local:Onoff_Control Margin="330,52,30,227"/>
+        <Label Content="·  시스템 트레이 켜기" Margin="24,75,156,192" FontWeight="Bold" FontSize="13"/>
+        <local:Onoff_Control Margin="330,81,30,198"/>
+        <Label Content="·  완료한 일정 보이기" Margin="24,160,156,107" FontSize="13" FontWeight="Bold"/>
+        <local:Onoff_Control Margin="330,166,30,113"/>
+        <Label Content="·  취소된 일정 보이기" Margin="24,189,156,77" FontSize="13" FontWeight="Bold"/>
+        <local:Onoff_Control Margin="330,195,30,84"/>
+        <Label Content="·  달력에 주차 표기" Margin="24,219,156,48" FontSize="13" FontWeight="Bold"/>
+        <local:Onoff_Control Margin="330,225,30,54"/>
+        <Label Content="·  더블 클릭으로 일정 완료하기" Margin="24,249,154,18" FontSize="13" FontWeight="Bold"/>
+        <local:Onoff_Control Margin="330,255,30,24"/>
+    </Grid>
+</Page>

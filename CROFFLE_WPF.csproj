@@ -141,17 +141,32 @@
     <Compile Include="HttpWaffle\Waffle.cs" />
     <Compile Include="HttpWaffle\WafflePage.cs" />
     <Compile Include="HttpWaffle\WkuWebReq.cs" />
+    <Compile Include="WPF_xamls\AlarmPage.xaml.cs">
+      <DependentUpon>AlarmPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF_xamls\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF_xamls\DailyControl.xaml.cs">
       <DependentUpon>DailyControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF_xamls\GeneralPage.xaml.cs">
+      <DependentUpon>GeneralPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF_xamls\MainGround.xaml.cs">
       <DependentUpon>MainGround.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF_xamls\Onoff_Control.xaml.cs">
       <DependentUpon>Onoff_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\Preferences.xaml.cs">
+      <DependentUpon>Preferences.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\WaffleLoginPage.xaml.xaml.cs">
+      <DependentUpon>WaffleLoginPage.xaml.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\WaffleUserPage.xaml.cs">
+      <DependentUpon>WaffleUserPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -207,11 +222,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="WPF_xamls\AlarmPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF_xamls\Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF_xamls\DailyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\GeneralPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,6 +246,36 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF_xamls\Preferences.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\WaffleLoginPage.xaml.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\WaffleUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\user_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\key_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\id_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPF_xamls\id_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPF_xamls\key_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPF_xamls\user_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
