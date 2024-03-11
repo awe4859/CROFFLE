@@ -27,12 +27,12 @@
    
         <Border BorderThickness="1" Margin="51,92,315,172" Grid.Row="2">
             <Border.Background>
-                <ImageBrush ImageSource="/WPF_xamls/id_icon.png"/>
+                <ImageBrush ImageSource="/Icon/id_icon.png"/>
             </Border.Background>
         </Border>
        <Border BorderThickness="1" Margin="51,147,315,117" Grid.Row="2">
              <Border.Background>
-                 <ImageBrush ImageSource="/WPF_xamls/key_icon.png"/>
+                 <ImageBrush ImageSource="/Icon/key_icon.png"/>
              </Border.Background>
         </Border>
     </Grid>

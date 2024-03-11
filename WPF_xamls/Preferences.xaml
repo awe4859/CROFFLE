@@ -13,14 +13,14 @@
         </Grid.RowDefinitions>
         <!--TitleBar Area-->
         <Border x:Name="titleBar_bd" Grid.Row="0" Background="#FF3CB1FF" CornerRadius="10 10 0 0"/>
-        <Grid x:Name="titleBarArea" Grid.Row="0">
+        <Grid x:Name="titleBarArea" Grid.Row="0"  Background="Transparent" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="45"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="35"/>
             </Grid.ColumnDefinitions>
 
-            <Grid x:Name="tb_Icon" Grid.Column="0">
+            <Grid x:Name="tb_Icon" Grid.Column="0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="35"/>
@@ -35,13 +35,13 @@
             <Grid x:Name="tb_Name" Grid.Column="1">
                 <Label Content="환경설정" FontWeight="Bold" FontSize="16" Foreground="White"/>
             </Grid>
-            <Grid x:Name="tb_CloseBtn" Grid.Column="2">
+            <Grid x:Name="tb_CloseBtn" Grid.Column="2" >
                 <Border Background="Transparent" CornerRadius=" 0 15 0 0" Margin="0 0 0 0" BorderThickness="0"/>
                 <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="25" BorderThickness="0" Foreground="White" Background="Transparent"/>
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Background="white">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25*"/>
@@ -85,7 +85,7 @@
                     </Button>
                 </Grid>
 
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Background="white">
                     <Frame x:Name="mainFrame"/>
                 </Grid>
 
@@ -93,19 +93,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <Border  Background="#FF3CB1FF"  HorizontalAlignment="Right"  VerticalAlignment="Top"  Margin="0,-33,22,0"  Height="25" Width="40" CornerRadius="4,4,4,4"/>
                     <Button Content="확인" HorizontalAlignment="Right" Margin="0,-33,22,0" VerticalAlignment="Top" Height="25" Width="40" Background="#FF3CB1FF" Foreground="White" BorderBrush="{x:Null}">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </Button.Resources>
                     </Button>
+                    <Border  Background="#FFE0E0E0" HorizontalAlignment="Left" Margin="292,-33,0,0" VerticalAlignment="Top" Height="25" Width="40" CornerRadius="4,4,4,4"/>
                     <Button Content="취소" HorizontalAlignment="Left" Margin="292,-33,0,0" VerticalAlignment="Top" Height="25" Width="40" Background="#FFE0E0E0" BorderBrush="{x:Null}">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </Button.Resources>
                     </Button>
                 </Grid>
                 <!--Grid.Row="2"-->
