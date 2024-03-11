@@ -19,10 +19,14 @@ namespace CROFFLE_WPF.WPF_xamls
     /// </summary>
     public partial class MainGround : Window
     {
+        Calendar mainCalendar;
         public MainGround()
         {
             InitializeComponent();
-            pageFrame.Content = new Calendar();
+            mainCalendar = new Calendar();
+            pageFrame.Content = mainCalendar;
         }
+
+        
     }
 }

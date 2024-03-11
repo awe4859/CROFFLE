@@ -10,16 +10,17 @@
 
     <Grid x:Name="waffleLogin">
         <Rectangle Stroke="#FFE0E0E0" Margin="10,35,10,54" Grid.Row="2" Fill="#FFE0E0E0" RadiusX="15" RadiusY="15"/>
-        <Button x:Name="LoginCheck" Content="로그인" Margin="297,202,30,63" Grid.Row="2" Background="#FF3CB1FF" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="White">
+        <Button x:Name="LoginBtn" Content="로그인" Margin="297,202,30,63" Grid.Row="2" Background="#FF3CB1FF" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="White">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="4"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Label Content="WAFFLE 로그인 " Margin="30,44,236,221" Grid.Row="2" FontSize="16"/>
+        <Label Content="WAFFLE 로그인 " Margin="30,44,236,221" Grid.Row="2" FontFamily="/Font/#KCC-Ganpan" FontSize="18"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="42,84,308,164" Grid.Row="2" CornerRadius="8,0,0,8" Background="#FFF7F7F7"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="42,139,308,109" Grid.Row="2" CornerRadius="8,0,0,8" Background="#FFF7F7F7"/>
+        
         <TextBox x:Name="UsernameTextBox" BorderThickness="1" Margin="91,84,55,164" Grid.Row="2" BorderBrush="Black" VerticalContentAlignment="Center" Text="아이디를 입력하세요"/>
 
         <!--PasswordBox 교환-->

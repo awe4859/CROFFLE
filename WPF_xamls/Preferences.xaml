@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="35"/>
             </Grid.ColumnDefinitions>
 
-            <Grid x:Name="tb_Icon" Grid.Column="0" >
+            <Grid x:Name="tb_Icon" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="35"/>
@@ -33,15 +33,16 @@
             </Grid>
             <!--환경설정이름-->
             <Grid x:Name="tb_Name" Grid.Column="1">
-                <Label Content="환경설정" FontWeight="Bold" FontSize="16" Foreground="White"/>
+                <Label Content="환경설정" FontFamily="/Font/#KCC-Ganpan" FontSize="16" Foreground="White"/>
             </Grid>
-            <Grid x:Name="tb_CloseBtn" Grid.Column="2" >
+            <Grid x:Name="tb_CloseBtn" Grid.Column="2">
                 <Border Background="Transparent" CornerRadius=" 0 15 0 0" Margin="0 0 0 0" BorderThickness="0"/>
-                <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="25" BorderThickness="0" Foreground="White" Background="Transparent"/>
+                <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="20" BorderThickness="0" Foreground="White" Background="Transparent"/>
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="1" Background="white">
+        <Border Grid.Row="1" Background="WhiteSmoke" CornerRadius="0 0 10 10"/>
+        <Grid Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25*"/>
@@ -49,56 +50,56 @@
                     <RowDefinition Height="44*"/>
                 </Grid.RowDefinitions>
 
-                <Grid x:Name="Titlebutton" Background="#FFE1E1E1" Margin="0,0,0,2" Grid.Row="0">
-                    <!--일반 탭-->
-                    <Button Content="일반" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22
-                " Width="68" Background="#FF3CB1FF" Foreground="White" Margin="-1,2,0,0" BorderBrush="Black">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4,4,0,0"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <!-- 정보탭-->
-                    <Button Content="정보" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="68" Background="#FFE1E1E1" Foreground="Black" Margin="200,2,0,0">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4,4,0,0"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <!--알림 탭-->
-                    <Button Content="알림" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="68" Foreground="black" Margin="66,2,0,0" Background="#FFE1E1E1">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4,4,0,0"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <!--WAFFLE 탭-->
-                    <Button Content="WAFFLE" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="68" Background="#FFE1E1E1" Foreground="Black" Margin="133,2,0,0">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4,4,0,0"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                <Border Background="LightGray" Grid.Row="0"/>
+                <Grid x:Name="Titlebutton" Margin="0 3 0 0" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="general_tap_grid" Grid.Column="0">
+                        <Border x:Name="general_bd" Background="#FF3CB1FF" CornerRadius="5 5 0 0" BorderThickness="1" BorderBrush="Black"/>
+                        <Label x:Name="general_lb" Content="일반" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="/Font/#KCC-Ganpan" FontSize="10" Foreground="White"/>
+                        <Button x:Name="general_btn" BorderThickness="0" Background="Transparent"/>
+                    </Grid>
+                    <Grid x:Name="alarm_tap_grid" Grid.Column="1">
+                        <Border x:Name="alarm_bd" Background="LightGray" CornerRadius="5 5 0 0" BorderThickness="1" BorderBrush="Black"/>
+                        <Label x:Name="alarm_lb" Content="알림" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="/Font/#KCC-Ganpan" FontSize="10" Foreground="Black"/>
+                        <Button x:Name="alarm_btn" BorderThickness="0" Background="Transparent"/>
+                    </Grid>
+                    <Grid x:Name="waffle_tap_grid" Grid.Column="2">
+                        <Border x:Name="waffle_bd" Background="LightGray" CornerRadius="5 5 0 0" BorderThickness="1" BorderBrush="Black"/>
+                        <Label x:Name="waffle_lb" Content="WAFFLE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="/Font/#KCC-Ganpan" FontSize="10" Foreground="Black"/>
+                        <Button x:Name="waffle_btn" BorderThickness="0" Background="Transparent"/>
+                    </Grid>
+                    <Grid x:Name="info_tap_grid" Grid.Column="3">
+                        <Border x:Name="info_bd" Background="LightGray" CornerRadius="5 5 0 0" BorderThickness="1" BorderBrush="Black"/>
+                        <Label x:Name="info_lb" Content="정보" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="/Font/#KCC-Ganpan" FontSize="10" Foreground="Black"/>
+                        <Button x:Name="info_btn" BorderThickness="0" Background="Transparent"/>
+                    </Grid>
                 </Grid>
 
-                <Grid Grid.Row="1" Background="white">
+                <Grid Grid.Row="1">
                     <Frame x:Name="mainFrame"/>
                 </Grid>
 
-                <Grid x:Name="check" Background="#FFE1E1E1" Margin="0,40,0,4" Grid.Row="2">
+                <Grid x:Name="check" Grid.Row="2" Background="Transparent">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
-                    <Border  Background="#FF3CB1FF"  HorizontalAlignment="Right"  VerticalAlignment="Top"  Margin="0,-33,22,0"  Height="25" Width="40" CornerRadius="4,4,4,4"/>
-                    <Button Content="확인" HorizontalAlignment="Right" Margin="0,-33,22,0" VerticalAlignment="Top" Height="25" Width="40" Background="#FF3CB1FF" Foreground="White" BorderBrush="{x:Null}">
-                    </Button>
-                    <Border  Background="#FFE0E0E0" HorizontalAlignment="Left" Margin="292,-33,0,0" VerticalAlignment="Top" Height="25" Width="40" CornerRadius="4,4,4,4"/>
-                    <Button Content="취소" HorizontalAlignment="Left" Margin="292,-33,0,0" VerticalAlignment="Top" Height="25" Width="40" Background="#FFE0E0E0" BorderBrush="{x:Null}">
-                    </Button>
+                    
+                    
+                    <Border Grid.Column="2" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="25" Width="40" CornerRadius="4"/>
+                    <Button Grid.Column="2" Content="확인" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FF3CB1FF" Foreground="White" BorderBrush="{x:Null}"/>
+                    
+                    <Border Grid.Column="1" Background="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" CornerRadius="4"/>
+                    <Button Grid.Column="1" Content="취소"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FFE0E0E0" BorderBrush="{x:Null}"/>
                 </Grid>
                 <!--Grid.Row="2"-->
             </Grid>

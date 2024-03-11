@@ -44,8 +44,7 @@ namespace Croffle.Data.SQLite
         {
             //Initialize();
 
-            string set = $@"SELECT COUNT(*) FROM sqlite_master WHERE name='{table}'";
-            _itemManager.SQL_Set(set, out DataSet dataSet);
+            _itemManager.SelectFrom("COUNT(*)", "sqlite_master", $@"name={table}", out DataSet dataSet);
             var count = dataSet.Tables[0].Rows[0][dataSet.Tables[0].Columns[0]].ToString();
 
             if(Convert.ToInt32(count) == 0)
@@ -73,18 +72,16 @@ ORDER BY start_time ASC";
 
             _itemManager.SQL_Set(sql, out DataSet dataSet);
             _analyzer.GetTablesOnDataSet(ref dataSet, out List<DataTable> tables);
+
             if (tables.Count > 1) throw new ConstraintException(nameof(tables));
             DataTable temp = tables[0];
             contents.Add(temp);
 
-            sql = $@"
-SELECT contentsID, title, color
-FROM memo
-WHERE memo_day=date('{date:yyyy-MM-dd}')
-ORDER BY contentsID ASC";
-            _itemManager.SQL_Set(sql, out dataSet);
+            _itemManager.SelectFrom("ContentsID, title, color", "memo", $@"memo_day=date('{date:yyyy-MM-dd}') ORDER BY contentsID ASC", out dataSet);
             _analyzer.GetTablesOnDataSet(ref dataSet, out tables);
+
             if (tables.Count > 1) throw new ConstraintException(nameof(tables));
+
             temp = tables[0];
             contents.Add(temp);
         }

@@ -37,7 +37,7 @@
             <Grid x:Name="tb_Name" Grid.Column="1"/>
             <Grid x:Name="tb_CloseBtn" Grid.Column="2">
                 <Border Background="Transparent" CornerRadius=" 0 15 0 0" Margin="0 0 0 0" BorderThickness="0"/>
-                <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="25" BorderThickness="0" Foreground="White" Background="Transparent"/>
+                <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="20" BorderThickness="0" Foreground="White" Background="Transparent"/>
             </Grid>
         </Grid>
 
@@ -168,6 +168,7 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <ProgressBar Grid.Column="1" BorderThickness="0" Background="WhiteSmoke" Visibility="Hidden">
                         <ProgressBar.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -178,7 +179,8 @@
                 </Grid>
             </Grid>
 
-            <Grid x:Name="pageArea" Grid.Column="1" Background="WhiteSmoke">
+            <Border Grid.Column="1" BorderThickness="0" Background="White" CornerRadius="0 0 10 0"/>
+            <Grid x:Name="pageArea" Grid.Column="1">
                 <Frame x:Name="pageFrame"/>
             </Grid>
         </Grid>

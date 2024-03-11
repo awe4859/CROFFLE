@@ -162,8 +162,8 @@
     <Compile Include="WPF_xamls\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\WaffleLoginPage.xaml.xaml.cs">
-      <DependentUpon>WaffleLoginPage.xaml.xaml</DependentUpon>
+    <Compile Include="WPF_xamls\WaffleLoginPage.xaml.cs">
+      <DependentUpon>WaffleLoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF_xamls\WaffleUserPage.xaml.cs">
       <DependentUpon>WaffleUserPage.xaml</DependentUpon>
@@ -250,7 +250,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\WaffleLoginPage.xaml.xaml">
+    <Page Include="WPF_xamls\WaffleLoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
