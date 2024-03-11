@@ -21,7 +21,7 @@
         <Label Content="컴퓨터소프트공학과 이세중님 안녕하세요!" Margin="108,101,10,164" Grid.Row="2" FontSize="14"/>
         <Border BorderThickness="1" Margin="26,85,296,148" Grid.Row="2">
             <Border.Background>
-                <ImageBrush ImageSource="/WPF_xamls/user_icon.png"/>
+                <ImageBrush ImageSource="/Icon/user_icon.png"/>
             </Border.Background>
         </Border>
         <Label Content="웹정보서비스 바로가기" Margin="30,200,167,65" Grid.Row="2" Foreground="#FF0056FF" FontStyle="Italic" FontSize="14"/>
