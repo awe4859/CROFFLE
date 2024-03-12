@@ -162,6 +162,12 @@
     <Compile Include="WPF_xamls\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF_xamls\ScheduleEditor.xaml.cs">
+      <DependentUpon>ScheduleEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\TaskEditor.xaml.cs">
+      <DependentUpon>TaskEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF_xamls\WaffleLoginPage.xaml.cs">
       <DependentUpon>WaffleLoginPage.xaml</DependentUpon>
     </Compile>
@@ -250,6 +256,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF_xamls\ScheduleEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\TaskEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF_xamls\WaffleLoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -267,6 +281,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\id_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\delete_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\calendar_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
