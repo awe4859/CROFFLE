@@ -150,11 +150,20 @@
     <Compile Include="WPF_xamls\DailyControl.xaml.cs">
       <DependentUpon>DailyControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF_xamls\DailyInfo.xaml.cs">
+      <DependentUpon>DailyInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\DailyInfoControl.xaml.cs">
+      <DependentUpon>DailyInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF_xamls\GeneralPage.xaml.cs">
       <DependentUpon>GeneralPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF_xamls\MainGround.xaml.cs">
       <DependentUpon>MainGround.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\MemoEditor.xaml.cs">
+      <DependentUpon>MemoEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF_xamls\Onoff_Control.xaml.cs">
       <DependentUpon>Onoff_Control.xaml</DependentUpon>
@@ -240,11 +249,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF_xamls\DailyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\DailyInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF_xamls\GeneralPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF_xamls\MainGround.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\MemoEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
