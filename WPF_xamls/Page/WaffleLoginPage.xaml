@@ -5,12 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CROFFLE_WPF.WPF_xamls"
       mc:Ignorable="d" 
-           d:DesignHeight="298" d:DesignWidth="400"
+           d:DesignHeight="300" d:DesignWidth="400"
       Title="WaffleLoginPage">
 
     <Grid x:Name="waffleLogin">
         <Rectangle Stroke="#FFE0E0E0" Margin="10,35,10,54" Grid.Row="2" Fill="#FFE0E0E0" RadiusX="15" RadiusY="15"/>
-        <Button x:Name="LoginBtn" Content="로그인" Margin="297,202,30,63" Grid.Row="2" Background="#FF3CB1FF" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="White">
+        <Button x:Name="LoginBtn" Content="로그인" Margin="297,202,30,63" Grid.Row="2" Background="#FF3CB1FF" BorderBrush="{x:Null}"
+                FontFamily="/Font/#KCC-Ganpan" FontSize="12" Foreground="White">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="4"/>

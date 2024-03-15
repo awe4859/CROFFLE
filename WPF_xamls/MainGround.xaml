@@ -40,6 +40,7 @@
                 <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="20" BorderThickness="0" Foreground="White" Background="Transparent"/>
             </Grid>
         </Grid>
+        <!--TitleBar Area-->
 
         <!--Main Area-->
         <Border x:Name="main_bd" Grid.Row="1" BorderThickness="0" CornerRadius="0 0 10 10" Background="Transparent"/>

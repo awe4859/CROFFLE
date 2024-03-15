@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CROFFLE_WPF.WPF_xamls"
         mc:Ignorable="d"
-                Title="Preferences" Height="400" Width="400" WindowStyle="None" AllowsTransparency="True" Background="Transparent" >
+                Title="Preferences" Height="415" Width="400" WindowStyle="None" AllowsTransparency="True" Background="Transparent" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+
         <!--TitleBar Area-->
         <Border x:Name="titleBar_bd" Grid.Row="0" Background="#FF3CB1FF" CornerRadius="10 10 0 0"/>
-        <Grid x:Name="titleBarArea" Grid.Row="0"  Background="Transparent" >
+        <Grid x:Name="titleBarArea" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="45"/>
                 <ColumnDefinition Width="1*"/>
@@ -31,23 +32,24 @@
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>
-            <!--환경설정이름-->
             <Grid x:Name="tb_Name" Grid.Column="1">
-                <Label Content="환경설정" FontFamily="/Font/#KCC-Ganpan" FontSize="16" Foreground="White"/>
+                <Label x:Name="tb_Name_lb" Content="환경설정" FontFamily="/Font/#KCC-Ganpan" FontSize="18" Foreground="White"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10 0 0 0"/>
             </Grid>
             <Grid x:Name="tb_CloseBtn" Grid.Column="2">
                 <Border Background="Transparent" CornerRadius=" 0 15 0 0" Margin="0 0 0 0" BorderThickness="0"/>
                 <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="20" BorderThickness="0" Foreground="White" Background="Transparent"/>
             </Grid>
         </Grid>
+        <!--TitleBar Area-->
 
         <Border Grid.Row="1" Background="WhiteSmoke" CornerRadius="0 0 10 10"/>
         <Grid Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="298*"/>
-                    <RowDefinition Height="44*"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="285*"/>
+                    <RowDefinition Height="55"/>
                 </Grid.RowDefinitions>
 
                 <Border Background="LightGray" Grid.Row="0"/>
@@ -86,22 +88,32 @@
                     <Frame x:Name="mainFrame"/>
                 </Grid>
 
-                <Grid x:Name="check" Grid.Row="2" Background="Transparent">
+                <Grid x:Name="Footers" Grid.Row="2" Background="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
-                    
-                    
-                    <Border Grid.Column="2" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="25" Width="40" CornerRadius="4"/>
-                    <Button Grid.Column="2" Content="확인" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FF3CB1FF" Foreground="White" BorderBrush="{x:Null}"/>
-                    
-                    <Border Grid.Column="1" Background="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" CornerRadius="4"/>
-                    <Button Grid.Column="1" Content="취소"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FFE0E0E0" BorderBrush="{x:Null}"/>
+
+                    <!--Footer 버튼 영역-->
+                    <Grid x:Name="Footer_btns" Grid.Column="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
+                        <Button Grid.Column="1" Content="확인" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FF3CB1FF"
+            Foreground="White" BorderBrush="{x:Null}" FontFamily="/Font/#KCC-Ganpan" FontSize="12"/>
+
+                        <Border Grid.Column="3" Background="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
+                        <Button Grid.Column="3" Content="취소"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FFE0E0E0"
+            BorderBrush="{x:Null}" FontFamily="/Font/#KCC-Ganpan" FontSize="12"/>
+                    </Grid>
+                    <!--Footer_Btns-->
                 </Grid>
-                <!--Grid.Row="2"-->
+                <!--Footers-->
             </Grid>
             <!--Grid.Row="1"-->
         </Grid>

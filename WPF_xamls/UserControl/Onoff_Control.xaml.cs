@@ -28,12 +28,12 @@ namespace CROFFLE_WPF.WPF_xamls
             if (value)
             {
                 switch_bd.Background = Brushes.LimeGreen;
-                changer_grid.Width = 50;
+                changer_grid.Width = Width;
             }
             else
             {
                 switch_bd.Background = Brushes.LightGray;
-                changer_grid.Width = 20;
+                changer_grid.Width = Width;
             }
         }
 
@@ -43,19 +43,19 @@ namespace CROFFLE_WPF.WPF_xamls
 
             if (value)
             {
-                da.From = 50;
+                da.From = Width;
                 da.To = 20;
                 switch_bd.Background = Brushes.LightGray;
                 value = !value;
-                Console.WriteLine(value);
+                Console.WriteLine($@"On Off Switch Value Changed: {value}");
             }
             else
             {
                 da.From = 20;
-                da.To = 50;
+                da.To = Width;
                 switch_bd.Background = Brushes.LimeGreen;
                 value = !value;
-                Console.WriteLine(value);
+                Console.WriteLine($@"On Off Switch Value Changed: {value}");
             }
             da.Duration = new Duration(new TimeSpan(500000));
 

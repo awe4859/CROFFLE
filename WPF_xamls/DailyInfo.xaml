@@ -9,39 +9,40 @@
         Title="DailyInfo" Height="550" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
 
-        <!--타이틀바영역-->
-        <Grid Grid.Row="0">
-            <Border CornerRadius="10 10 0 0" Background="#FF3CB1FF"/>
-            <Grid x:Name="TitleBarGrid" Grid.Row="0" Background="Transparent">
+        <!--TitleBar Area-->
+        <Border x:Name="titleBar_bd" Grid.Row="0" Background="#FF3CB1FF" CornerRadius="10 10 0 0"/>
+        <Grid x:Name="titleBarArea" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="tb_Icon" Grid.Column="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="45"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="35"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="Iccon" Grid.Column="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="35"/>
-                    </Grid.ColumnDefinitions>
-                    <Ellipse Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Icon/croffle.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </Grid>
-                <Grid x:Name="TitleBarName" Grid.Column="1">
-                    <TextBlock Text="일일상세" FontSize="17" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                </Grid>
-                <Grid x:Name="OptionButton" Grid.Column="2">
-                    <Border Background="Transparent" CornerRadius=" 0 15 0 0" Margin="0 0 0 0" BorderThickness="0"/>
-                    <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="25" BorderThickness="0" Foreground="White" Background="Transparent"/>
-                </Grid>
+                <Ellipse Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/Icon/croffle.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+            <Grid x:Name="tb_Name" Grid.Column="1">
+                <Label x:Name="tb_Name_lb" Content="일일상세" FontFamily="/Font/#KCC-Ganpan" FontSize="17" Foreground="White" VerticalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10 0 0 0"/>
+            </Grid>
+            <Grid x:Name="tb_CloseBtn" Grid.Column="2">
+                <Border Background="Transparent" CornerRadius=" 0 15 0 0" Margin="0 0 0 0" BorderThickness="0"/>
+                <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="20" BorderThickness="0" Foreground="White" Background="Transparent"/>
             </Grid>
         </Grid>
+
         <!--컨텐츠영역-->
         <Grid Grid.Row="1">
             <Grid>
@@ -102,50 +103,41 @@
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Label FontSize="28" FontWeight="Bold">
+                                <Label FontSize="27" FontWeight="Bold" FontFamily="/Font/#KCC-Ganpan">
                                     yyyy.mm.dd (월)
                                 </Label>
                             </Grid>
                             <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Label Foreground="Red" FontSize="15" FontWeight="Bold">한글날</Label>
+                                <Label Content="특일정보"  Foreground="Red" FontSize="15" FontWeight="Bold" FontFamily="/Font/#KCC-Ganpan"/>
                             </Grid>
                         </Grid>
                     </Grid>
 
                     <!--D-day section-->
                     <Grid Grid.Column="2">
-                        <StackPanel HorizontalAlignment="Right">
-                            <Label>
-                                중간고사 D-dd
-                            </Label>
-                            <Label HorizontalAlignment="Right">
-                                종강 D-dd
-                            </Label>
-                        </StackPanel>
+                        <StackPanel x:Name="dDay_sp" HorizontalAlignment="Right"/>
                     </Grid>
                 </Grid>
+                <!--날짜영역-->
+                
                 <!--상세정보영역-->
                 <Grid x:Name="InfoGrid" Grid.Row="1" Background="#f0f0f0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                   
                     <!--완료영역-->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid x:Name="CompleteContentGrid" Grid.Column="0">
-                            <StackPanel>
-
-                            </StackPanel>
-
-                        </Grid>
-                        <!--미완료영역-->
-                        <Grid x:Name="InCompleteContentGrid" Grid.Column="1">
-                            <StackPanel>
-
-                            </StackPanel>
-                        </Grid>
+                    <Grid x:Name="CompleteContentGrid" Grid.Column="0">
+                        <StackPanel x:Name="Complete_sp"/>
                     </Grid>
+                    <!--미완료영역-->
+                    <Grid x:Name="IncompleteContentGrid" Grid.Column="1">
+                        <StackPanel x:Name="Incomplete_sp"/>
+                    </Grid>
+                    <!--미완료영역-->
                 </Grid>
+            <!--상세정보영역-->
             </Grid>
         </Grid>
     </Grid>

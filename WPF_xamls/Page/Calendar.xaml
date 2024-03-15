@@ -28,6 +28,9 @@
                     <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
 
+                <Label x:Name="week_lb" Content="00주차" FontFamily="/Font/#KCC-Ganpan" FontSize="11" Margin="10 0"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+
                 <!--이전 달 버튼-->
                 <Grid x:Name="prevBtnGrid" Grid.Column="1">
                     <Grid.RowDefinitions>
