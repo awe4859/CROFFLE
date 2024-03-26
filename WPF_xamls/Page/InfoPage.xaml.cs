@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Croffle.Classes;
-using Croffle.Data.SQLite;
 
 namespace CROFFLE_WPF.WPF_xamls
 {
     /// <summary>
-    /// GeneralPage.xaml에 대한 상호 작용 논리
+    /// InfoPage.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class GeneralPage : Page
+    public partial class InfoPage : Page
     {
-
-       /* private Settings setting;
-        private SQLiteDB sqlite;*/
-
-        public GeneralPage()
+        public InfoPage()
         {
             InitializeComponent();
-            /*sqlite = new SQLiteDB();
-            setting = new Settings(ref sqlite);
-            setting.LoadAccount(ref sqlite);*/
         }
     }
 }
