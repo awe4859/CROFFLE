@@ -10,7 +10,7 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Border x:Name="LebelsBox_Border" Grid.Row="0" BorderBrush="Black" BorderThickness="0.5" Margin="0 0 0 0" Padding="0 0 0 0"/>
+        <Border x:Name="LabelsBox_Border" Grid.Row="0" BorderBrush="Black" BorderThickness="0.5" Margin="0 0 0 0" Padding="0 0 0 0"/>
         <Border x:Name="ContentsBox_Border" Grid.Row="1" BorderBrush="Black" BorderThickness="0.5" Margin="0 0 0 0" Padding="0 0 0 0"/>
 
 
@@ -21,7 +21,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Label x:Name="dayNum_lb" Grid.Row="0" Content="00" HorizontalAlignment="Center" VerticalAlignment="Center"
+            <Label x:Name="dayNum_lb" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="10"/>
             <Label x:Name="dailyInfo_lb" Grid.Row="1" Content="~~의 날" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="10"/>

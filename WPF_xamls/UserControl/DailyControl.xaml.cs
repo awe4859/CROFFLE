@@ -20,10 +20,35 @@ namespace CROFFLE_WPF.WPF_xamls
     /// </summary>
     public partial class DailyControl : UserControl
     {
-        public DailyControl()
+        private DateTime date_value;
+        internal DateTime Day { get { return date_value; } }
+
+
+        public DailyControl(DateTime date)
         {
             InitializeComponent();
+            date_value = date;
+            dayNum_lb.Content = date_value.ToString("dd"); // 날짜 설정
+            
         }
 
+        internal void ChangeBackground(Brush brushes)
+        {
+            LabelsBox_Border.Background = brushes;
+
+            ContentsBox_Border.Background = brushes;
+           // brus/-+hes = Brushes.Red;
+
+        }
+        internal void ChangeCornerRadius(int TopLeft, int TopRight, int BottomRight, int BttomLeft)
+        {
+           
+            LabelsBox_Border.CornerRadius = new CornerRadius(TopLeft, TopRight, 0, 0);
+            ContentsBox_Border.CornerRadius = new CornerRadius(0, 0, BottomRight, BttomLeft);
+        }
+        public bool IsToday()
+        {
+            return Day == DateTime.Today;
+        }
     }
 }

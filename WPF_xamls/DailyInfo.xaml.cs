@@ -22,6 +22,7 @@ namespace CROFFLE_WPF.WPF_xamls
         public DailyInfo()
         {
             InitializeComponent();
+            
         }
     }
 }
