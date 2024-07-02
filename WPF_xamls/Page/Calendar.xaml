@@ -41,7 +41,7 @@
                     <Label x:Name="prevBtnLb" Grid.Row="1" Content="이전 달" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                            FontSize="15" FontFamily="/Font/#KCC-Ganpan" Margin="0 0 0 0"/>
                     <Border x:Name="prevBtnBorder" BorderBrush="Black" BorderThickness="1" Grid.Row="1" CornerRadius="7"/>
-                    <Button x:Name="prevBtn" Grid.Row="1" Background="Transparent" BorderThickness="0"/>
+                    <Button x:Name="prevBtn" Grid.Row="1" Background="Transparent" BorderThickness="0" Click="prevBtn_Click"/>
                 </Grid>
 
                 <!--다음 달 버튼-->
@@ -54,7 +54,7 @@
                     <Label x:Name="nextBtnLb" Grid.Row="1" Content="다음 달" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                             FontSize="15" FontFamily="/Font/#KCC-Ganpan" Margin="0 0 0 0"/>
                     <Border x:Name="nextBtnBorder" BorderBrush="Black" BorderThickness="1" Grid.Row="1" CornerRadius="7"/>
-                    <Button x:Name="nextBtn" Grid.Row="1" Background="Transparent" BorderThickness="0"/>
+                    <Button x:Name="nextBtn" Grid.Row="1" Background="Transparent" BorderThickness="0" Click="nextBtn_Click"/>
                 </Grid>
 
                 <!--년도 및 월 표기-->
@@ -87,7 +87,7 @@
                     <Border x:Name="todayBtn_bd" BorderBrush="Black" BorderThickness="1" CornerRadius="7" Grid.Column="1" Grid.Row="1"/>
                     <Label x:Name="todayBtn_lb" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                            Content="00" FontFamily="/Font/#KCC-Ganpan" FontSize="15"/>
-                    <Button x:Name="todayBtn" Grid.Column="1" Grid.Row="1" Background="Transparent" BorderThickness="0"/>
+                    <Button x:Name="todayBtn" Grid.Column="1" Grid.Row="1" Background="Transparent" BorderThickness="0" Click="todayBtn_Click"/>
                 </Grid>
             </Grid>
 
