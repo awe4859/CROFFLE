@@ -22,10 +22,12 @@
         <Border BorderBrush="Black" BorderThickness="1" Margin="42,84,308,164" Grid.Row="2" CornerRadius="8,0,0,8" Background="#FFF7F7F7"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="42,139,308,109" Grid.Row="2" CornerRadius="8,0,0,8" Background="#FFF7F7F7"/>
         
-        <TextBox x:Name="UsernameTextBox" BorderThickness="1" Margin="91,84,55,164" Grid.Row="2" BorderBrush="Black" VerticalContentAlignment="Center" Text="아이디를 입력하세요"/>
+        <!--ID_TextBox-->
+        <TextBox x:Name="UsernameTextBox" BorderThickness="1" Margin="91,84,55,164" Grid.Row="2" BorderBrush="Black" VerticalContentAlignment="Center" Text="아이디를 입력해주세요." GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
 
         <!--PasswordBox 교환-->
-        <TextBox x:Name="PasswordBox" BorderThickness="1" Margin="91,139,55,109" Grid.Row="2" BorderBrush="Black" VerticalContentAlignment="Center" Text="비밀번호를 입력하세요"/>
+        <PasswordBox x:Name="PasswordBox" PasswordChar="●" Visibility="Collapsed" BorderThickness="1" Margin="91,139,55,109" Grid.Row="2" BorderBrush="Black" VerticalContentAlignment="Center" LostFocus="TextBox_LostFocus"/>
+        <TextBox x:Name="PasswordTextBox" Text="비밀번호를 입력해주세요." BorderThickness="1" Margin="91,139,55,109" Grid.Row="2" BorderBrush="Black" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus"/>
    
         <Border BorderThickness="1" Margin="51,92,315,172" Grid.Row="2">
             <Border.Background>

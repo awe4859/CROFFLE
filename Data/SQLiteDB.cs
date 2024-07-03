@@ -44,10 +44,10 @@ namespace Croffle.Data.SQLite
         {
             //Initialize();
 
-            _itemManager.SelectFrom("COUNT(*)", "sqlite_master", $@"name={table}", out DataSet dataSet);
+            /* SQL 구문오류가 발생하기 때문에   $@"name={table}" => $@"name='{table}'"  (작은따옴표) 추가해서 변경*/
+            _itemManager.SelectFrom("COUNT(*)", "sqlite_master", $@"name='{table}'", out DataSet dataSet);
             var count = dataSet.Tables[0].Rows[0][dataSet.Tables[0].Columns[0]].ToString();
-
-            if(Convert.ToInt32(count) == 0)
+            if (Convert.ToInt32(count) == 0)
                 _itemManager.SQL_Mod(table_struct);
 
             return Convert.ToInt32(count);

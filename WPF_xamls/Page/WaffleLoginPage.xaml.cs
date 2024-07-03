@@ -20,9 +20,41 @@ namespace CROFFLE_WPF.WPF_xamls
     /// </summary>
     public partial class WaffleLoginPage : Page
     {
+
+        private string id_default = "아이디를 입력해주세요.";
+        private string pw_default = "비밀번호를 입력해주세요.";
+
         public WaffleLoginPage()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox obj = (TextBox)sender;
+            if (obj == UsernameTextBox && UsernameTextBox.Text == id_default)
+            {
+                obj.Text = "";
+            }
+            if(obj == PasswordTextBox && PasswordTextBox.Text == pw_default)
+            {
+                PasswordTextBox.Visibility = Visibility.Collapsed;
+                PasswordBox.Visibility = Visibility.Visible;
+                PasswordBox.Focus();
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender == UsernameTextBox && UsernameTextBox.Text == "")
+            {
+                UsernameTextBox.Text = id_default;
+            }
+            if (sender == PasswordBox && PasswordBox.Password == "")
+            {
+                PasswordTextBox.Visibility = Visibility.Visible;
+                PasswordBox.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

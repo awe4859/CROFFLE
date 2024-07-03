@@ -17,7 +17,7 @@ namespace CROFFLE_WPF.WPF_xamls
 
         public bool state { get {  return value; } set { this.value = value; } }
 
-        public Onoff_Control()
+        public Onoff_Control() // 파라미터로 value 받기
         {
             InitializeComponent();
             Initializing();

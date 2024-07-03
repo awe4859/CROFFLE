@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using Croffle.Classes;
 using System.Windows.Media;
+using Color = System.Windows.Media.Color; // Windows.Media.Color와 겹쳐서 따로 선언
 
 namespace Croffle.HttpWaffle
 {
