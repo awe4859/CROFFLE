@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CROFFLE_WPF"
         xmlns:local1="clr-namespace:CROFFLE_WPF.WPF_xamls"
         mc:Ignorable="d"
-                Title="Preferences" Height="415" Width="400" WindowStyle="None" AllowsTransparency="True" Background="Transparent" >
+                Title="Preferences" Height="415" Width="400" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Closed="Window_Closed" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -109,7 +109,7 @@
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Right"  VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
                         <Button x:Name="Ok_btn" Grid.Column="1" Content="확인" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FF3CB1FF"
-            Foreground="White" BorderBrush="{x:Null}" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Click="Ok_btn_Click"/>
+            Foreground="White" BorderBrush="{x:Null}" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Click="Save_Setting_Click"/>
 
                         <Border Grid.Column="3" Background="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
                         <Button x:Name="Cancel_btn" Grid.Column="3" Content="취소"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FFE0E0E0"
@@ -124,4 +124,31 @@
         <!--Grid.Row="1"-->
     </Grid>
     <!--맨 위-->
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="transparent"/>
+                                <Setter TargetName="Border" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
 </Window>

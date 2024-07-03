@@ -41,7 +41,7 @@ namespace Croffle.Classes
             var res = tables[0].Rows.Count;
 
             //계정 정보 있음
-            if (res != 0) { LoadAccount(); }
+            if (res != 0) { LoadAccount(); logged_in = true; }
             //없음
             else { logged_in = false; }
 
@@ -50,6 +50,7 @@ namespace Croffle.Classes
 
             LoadSetting();
         }
+
 
         /// <summary>
         /// 계정을 암/복호화하기 위한 키를 생성합니다.
@@ -138,7 +139,6 @@ namespace Croffle.Classes
                 {
                     List<DataTable> tables;
                     sql.SQL_Get_Table($@"value", table, $@"contentsID='{field.Name}'", out tables);
-
                     string value;
                     if (tables != null)
                     {
@@ -153,7 +153,7 @@ namespace Croffle.Classes
                     if (value != null)
                     {
                         try { field.SetValue(this, Convert.ToBoolean(value)); }
-                        catch (FormatException) { return 0; }
+                        catch (FormatException) {  return 0; }
                     }
                     else return 0;
                 }
@@ -181,7 +181,7 @@ namespace Croffle.Classes
                     if (result == 0) return 0;
                 }
 
-                if (field.FieldType == typeof(int))
+                else if (field.FieldType == typeof(int))
                 {
 
                     int value = Convert.ToInt32(field.GetValue(this));
@@ -190,7 +190,7 @@ namespace Croffle.Classes
                     var result = sql.SQL_Set_Data(table, field.Name, sql_value);
                     if (result == 0) return 0;
                 }
-                else return 0;
+                else return 0;  // if문을 조건을 만족하지 않는 경우 무조건 return 0을 하기 때문에 오류 발생
             }
             return 1;
         }
