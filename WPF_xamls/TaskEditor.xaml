@@ -5,16 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CROFFLE_WPF"
         xmlns:local1="clr-namespace:CROFFLE_WPF.WPF_xamls"
-        mc:Ignorable="d"
-        Title="TaskEditor" Height="310" Width="400"   Background="Transparent" WindowStyle="None" AllowsTransparency="True">
-    <!--Height 닫으면 310 열면 485-->
+                mc:Ignorable="d"
+        Title="TaskEditor" Height="310" Width="400"   Background="Transparent" WindowStyle="None" AllowsTransparency="True" MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <!--TargetType을 {x:Type ~} 과 같이 정의할 수도 있음-->
+            <Setter Property="Template">
+                <!--Button.Template으로 접근-->
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <!--Template을 정의-->
+                        <!--Button의 형태를 define하는 구간임. 1개만 define할 수 있기 때문에 Button은 Border에 Grid를 넣은 형태임-->
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <!--따로 변경을 하지 않기 때문에 그대로 keep-->
+                            <Grid>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                        <!--만약 동작에 따른 변화를 넣고 싶은 경우 <ControlTemplate.Triggers>를 사용. 아래는 예시임(실제로는 뺄 것: 우리는 색 변경을 안할 것이기 때문)-->
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>   <!--타이틀바-->
-            <RowDefinition Height="65"/>   <!--과업제목-->
-            <RowDefinition Height="90"/>   <!--과업정보-->
-            <RowDefinition Height="*"/>    <!--과업추가정보 열기/닫기-->
-            <RowDefinition Height="90"/>  <!--과업설정-->
+            <RowDefinition Height="35"/>
+            <!--타이틀바-->
+            <RowDefinition Height="65"/>
+            <!--과업제목-->
+            <RowDefinition Height="90"/>
+            <!--과업정보-->
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="90"/>
+            <!--과업설정-->
         </Grid.RowDefinitions>
 
 
@@ -44,7 +68,7 @@
             </Grid>
             <Grid x:Name="tb_CloseBtn" Grid.Column="2">
                 <Border Background="Transparent" CornerRadius=" 0 15 0 0" Margin="0 0 0 0" BorderThickness="0"/>
-                <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="20" BorderThickness="0" Foreground="White" Background="Transparent"/>
+                <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="20" BorderThickness="0" Foreground="White" Background="Transparent" Click="closeBtn_Click"/>
             </Grid>
         </Grid>
         <!--TitleBar Area-->
@@ -59,13 +83,13 @@
 
             <Grid x:Name="Subject_name_grid" Grid.Column="0" Width="345" Height="40" HorizontalAlignment="Right">
                 <Border BorderThickness="1" CornerRadius="7" BorderBrush="#FF707070"/>
-                <TextBox  Text="제목을 입력해주세요" Background="Transparent" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox x:Name="Subject_tb" Text="제목을 입력하세요" FontFamily="/Font/#KCC-Ganpan" FontSize="13" Background="Transparent" BorderBrush="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="Subject_tb_GotFocus" Margin="10,0,0,0"/>
             </Grid>
 
             <!--Delete Button-->
             <Grid x:Name="DeleteIcon" Grid.Column="1">
-                <Image Source="/Icon/trash-can-solid.png" Opacity="0.5" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button x:Name="Delete_Btn" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"/>
+                <Image x:Name="delete_icon" Source="/Icon/trash-can-solid.png" Opacity="0.5" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="Delete_Btn" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"  MouseEnter="Delete_Btn_MouseEnter" MouseLeave="Delete_Btn_MouseLeave" Click="Delete_Btn_Click"/>
             </Grid>
         </Grid>
 
@@ -85,36 +109,27 @@
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0" Source="/Icon/calendar_icon.png" Width=" 30" HorizontalAlignment="Right" Margin=" 20 0 0 0" />
-                <Label Grid.Column="1" Content="하루 종일" HorizontalAlignment="Right" Margin="0 0 5 0" VerticalAlignment="Center"
-                           FontFamily="/Font/#KCC-Ganpan" FontSize="15"/>
-                <local1:Onoff_Control Grid.Column="2" Width="40" Height="20" HorizontalAlignment="Right" Margin="0 0 20 0"/>
             </Grid>
 
             <Grid x:Name="DayEnd" Grid.Row="1" Margin="15 0">
                 <Border BorderThickness="1" CornerRadius="7" BorderBrush="#FF707070"/>
-                <Label  Content="종료: yyyy년 MM 월 dd일 HH:mm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                <Label x:Name="DayEnd_lb" Content="종료: yyyy년 MM 월 dd일 HH:mm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
                             BorderBrush="Transparent" Background="Transparent" Margin="10 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="13"/>
-                <Button Content="" Background="Transparent" BorderBrush="Transparent " />
+                <Button Content="" Background="Transparent" BorderBrush="Transparent" Click="dayend_bt_Click" />
             </Grid>
 
         </Grid>
 
-        <!--과업추가정보 열기/닫기-->
-        <!--일정추가정보 열기/닫기-->
         <Border x:Name="more_Section_bd" Grid.Row="3" BorderThickness="0" Background="WhiteSmoke"/>
         <Grid x:Name="more_Section_area" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
-
             <Grid x:Name="more_Section" Grid.Row="0">
                 <Frame x:Name="more_Section_Frame" BorderThickness="0"/>
             </Grid>
-
             <Grid x:Name="Fold" Grid.Row="1" Width="360">
-                <Label x:Name="fold_lb" Content="더보기&lt;" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="12" FontFamily="/Font/#KCC-Ganpan"/>
-                <Button x:Name="fold_btn" HorizontalAlignment="Right" VerticalAlignment="Center" BorderThickness="0" Background="Transparent" Width="50" Height="20"/>
             </Grid>
         </Grid>
 
@@ -170,22 +185,22 @@
 
                         <Grid x:Name="Button_Red" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border CornerRadius="4" Background="#FFFF4419"/>
-                            <Button Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}"/>
+                            <Button Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}" Click="Button_Red_Click"/>
                         </Grid>
 
                         <Grid x:Name="Button_Green" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border CornerRadius="4" Background="#FF80E12A"/>
-                            <Button Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}"/>
+                            <Button Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}" Click="Button_Green_Click"/>
                         </Grid>
 
                         <Grid x:Name="Button_Blue" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border CornerRadius="4" Background="#FF00A5FF"/>
-                            <Button Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}"/>
+                            <Button Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}" Click="Button_Blue_Click"/>
                         </Grid>
 
                         <Grid  x:Name="Button_Yellow" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border CornerRadius="4" Background="Gold"/>
-                            <Button Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}"/>
+                            <Button Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}" Click="Button_Yellow_Click"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -199,13 +214,13 @@
                         <ColumnDefinition Width="60"/>
                         <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
-                    <Button Grid.Column="1" Content="확인" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FF3CB1FF"
-        Foreground="White" BorderBrush="{x:Null}" FontFamily="/Font/#KCC-Ganpan" FontSize="12"/>
+                    <Border x:Name="Ok_bd" Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
+                    <Button x:Name="Ok_bt" Grid.Column="1" Content="확인" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="60" Background="Transparent"
+Foreground="White" BorderBrush="{x:Null}" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Click="Ok_bt_Click"/>
 
                     <Border Grid.Column="3" Background="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
-                    <Button Grid.Column="3" Content="취소"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="40" Background="#FFE0E0E0"
-        BorderBrush="{x:Null}" FontFamily="/Font/#KCC-Ganpan" FontSize="12"/>
+                    <Button Grid.Column="3" Content="취소"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="60" Background="#FFE0E0E0"
+BorderBrush="{x:Null}" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Click="cancel_bt_Click" />
                 </Grid>
                 <!--Footer_Btns-->
             </Grid>
