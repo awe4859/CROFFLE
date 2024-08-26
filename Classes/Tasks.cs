@@ -1,8 +1,8 @@
 ﻿using Croffle.Classes.MainAbstract;
-using Croffle.Data.SQLite;
 using System.Collections.Generic;
 using System;
 using System.Data;
+using CroffleDataManager.SQLiteDB;
 
 namespace Croffle.Classes
 {
@@ -11,17 +11,14 @@ namespace Croffle.Classes
     /// </summary>
     internal class Tasks : ATasks
     {
-        private SQLiteDB sql;
-
         /// <summary>
         /// Initializing
         /// </summary>
         internal Tasks()
         {
-            sql = new SQLiteDB();
+            db = new SQLiteDB();
             contents_name = Contents.Name(EContents.eTask);
-            sql.Initialize(contents_name, Task_Struct());
-        }
+        } // Tasks
 
         /// <summary>
         /// 생성과 함께 DB에서 데이터를 Load
@@ -29,44 +26,11 @@ namespace Croffle.Classes
         /// <param name="sql">SQLiteDB 객체</param>
         internal Tasks(string contentsID)
         {
-            sql = new SQLiteDB();
+            db = new SQLiteDB();
             contents_name = Contents.Name(EContents.eTask);
-            sql.Initialize(contents_name, Task_Struct());
+
             LoadOnDB(contentsID);
-        }
-
-
-        /// <summary>
-        /// 새로운 ID를 생성함. 형식: T{yyMMdd}{00}
-        /// </summary>
-        protected override void GenerateID()
-        {
-            string search = $@"
-SELECT contentsID
-FROM {contents_name}
-ORDER BY contentsID DESC";
-
-            sql.SQL_Search(search, out DataSet dataSet);
-
-            string ID;
-            int count;
-            if (dataSet != null)
-            {
-                if (dataSet.Tables.Count > 0)
-                {
-                    if (dataSet.Tables[0].Rows.Count > 0)
-                    {
-                        ID = dataSet.Tables[0].Rows[0][0].ToString();
-                        count = Convert.ToInt32(ID.Substring(7));
-                    }
-                    else count = -1;
-                }
-                else count = -1;
-            }
-            else count = -1;
-            string result = $@"T{DateTime.Now:yyMMdd}{count + 1:00}";
-            contentsID = result;
-        }
+        } // Tasks
 
         /// <summary>
         /// DB에서 데이터를 Load
@@ -74,18 +38,54 @@ ORDER BY contentsID DESC";
         /// <param name="sql">SQLiteDB 객체</param>
         internal override void LoadOnDB(string contentsID)
         {
-            sql.SQL_Get_Table("*", contents_name, $@"contentsID='{contentsID}'", out List<DataTable> tables);
-            var values = tables[0].Rows[0];
+            Console.WriteLine($@"[Task] Load: loading data from DB");
+            db.LoadOnDB(contents_name, contentsID, out DataTable table);
+            if( table.Rows.Count == 0)
+            {
+                Console.WriteLine($@"> [Load] no data found for ID: {contentsID}");
+                throw new ArgumentNullException("No data found for ID");
+            }
+            if( table.Rows.Count > 1)
+            {
+                Console.WriteLine($@"> [Load] too many data found for ID: {contentsID}");
+                throw new ArgumentOutOfRangeException("Too many data found for ID");
+            }
 
+            var values = table.Rows[0];
+            var fail_list = new List<string>();
+
+            // contentsID
             this.contentsID = contentsID;
-            whens = DateTime.Parse(values["task_date"].ToString());
-            scheduleTime = DateTime.Parse(values["dead_line"].ToString());
+            // whens
+            var parse = DateTime.TryParse(values["task_date"].ToString(), out whens);
+            if(!parse) fail_list.Add($@"task_date: {values["task_date"].ToString()}");
+            // deadline
+            parse = DateTime.TryParse(values["dead_line"].ToString(), out deadline);
+            if(!parse) fail_list.Add($@"dead_line: {values["dead_line"].ToString()}");
+            // title
             title = values["title"].ToString();
-            color_argb = Convert.ToInt32(values["color"].ToString());
+            // color
+            parse = int.TryParse(values["color"].ToString(), out color_argb);
+            if(!parse) fail_list.Add($@"color: {values["color"].ToString()}");
+            // place
             place = values["place"].ToString();
-            whether_Alarm = Convert.ToBoolean(Convert.ToInt32(values["alarm"]));
-            done = Convert.ToBoolean(Convert.ToInt32(values["done"]));
-        }
+            // alarm
+            parse = bool.TryParse(values["alarm"].ToString(), out bAlarm);
+            if(!parse) fail_list.Add($@"alarm: {values["alarm"].ToString()}");
+            // done
+            bDone = bool.TryParse(values["done"].ToString(), out bDone);
+            if(!parse) fail_list.Add($@"done: {values["done"].ToString()}");
+
+            if(fail_list.Count > 0)
+            {
+                Console.WriteLine($@"[Task] Load: failed to parse data");
+                foreach(var fail in fail_list)
+                {
+                    Console.WriteLine($@"  - {fail}");
+                }
+                throw new FormatException("Failed to parse data");
+            }
+        } // LoadOnDB
 
         /// <summary>
         /// DB에 현 객체의 데이터를 저장(덮어쓰기)
@@ -93,10 +93,14 @@ ORDER BY contentsID DESC";
         /// <param name="sql">SQLiteDB 객체</param>
         internal override void SaveOnDB()
         {
+            Console.WriteLine($@"[Task] Save: saving data to DB");
             if (contentsID == "" || contentsID == null) GenerateID();
-            var sql_string = sql.Get_SQL_String(contentsID, scheduleTime, title, color_argb, place, whether_Alarm, done);
-            sql.SQL_Set_Data(contents_name, contentsID, sql_string);
-        }
+
+            string values = $@"'{contentsID}', date('{whens:yyyy-MM-dd}'), datetime('{deadline:yyyy-MM-dd HH:mm}'), "
+                +$@"datetime('{DateTime.Now:yyyy-MM-dd HH:mm}'), '{title}', {color_argb}, '{place}', {bAlarm}, {bDone}";
+
+            db.SaveOnDB(contents_name, values);
+        } // SaveOnDB
 
         /// <summary>
         /// 현재 Object를 DB에서 삭제
@@ -104,29 +108,7 @@ ORDER BY contentsID DESC";
         /// <param name="sql">SQLiteDB 객체</param>
         internal override void DeleteOnDB()
         {
-            sql.SQL_Del_Data(contents_name, contentsID);
-        }
-
-        /// <summary>
-        /// DB에 task테이블을 생성하기위한 sql을 반환합니다.
-        /// </summary>
-        /// <returns></returns>
-        private string Task_Struct()
-        {
-
-           string table_struct = @"
-CREATE TABLE task
-(contentsID varchar(9) NOT NULL PRIMARY KEY,
- task_date date,
- dead_line datetime,
- added_time datetime DEFAULT (date('now')),
- title varchar(50),
- color integer,
- place varchar(20),
- alarm bool DEFAULT true,
- done bool DEFAULT false,
- CHECK (contentsID LIKE 'T%'))";
-            return table_struct;
-        }
-    }
-}
+            db.DeleteOnDB(contents_name, contentsID);
+        } // DeleteOnDB
+    } // Tasks
+} // namespace Croffle.Classes

@@ -1,4 +1,4 @@
-﻿using Croffle.Data.SQLite;
+﻿using CroffleDataManager.SQLiteDB;
 using System;
 
 namespace Croffle.Classes.MainAbstract
@@ -34,6 +34,17 @@ namespace Croffle.Classes.MainAbstract
         /// </summary>
         internal int color_argb;
 
-        protected abstract void GenerateID();
+        internal abstract void SaveOnDB();
+        internal abstract void LoadOnDB(string contentsID);
+        internal abstract void DeleteOnDB();
+
+        protected internal SQLiteDB db;
+
+        protected internal void GenerateID()
+        {
+            int count = db.Get_ID_Count(contents_name, DateTime.Today);
+            string result = $@"{contents_name.ToUpper()[0]}{DateTime.Now:yyMMdd}{count:D4}";
+            contentsID = result;
+        }
     }
 }

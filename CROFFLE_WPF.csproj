@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,30 +56,24 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AnniversaryAPI">
+      <HintPath>DLLs\AnniversaryAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="CroffleDataManager">
+      <HintPath>DLLs\CroffleDataManager.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.58.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>packages\HtmlAgilityPack.1.11.58\lib\Net45\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="HttpManager">
+      <HintPath>DLLs\HttpManager.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\System.Data.SQLite.EF6.1.0.118.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\System.Data.SQLite.Linq.1.0.118.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -91,6 +85,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="WaffleHttp">
+      <HintPath>DLLs\WaffleHttp.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -100,16 +97,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AnnvAPI\AnniversaryAPI.cs" />
-    <Compile Include="AnnvAPI\Interface\IHttpCon.cs" />
-    <Compile Include="AnnvAPI\Interface\Implement\HttpCon.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Alarm.cs" />
     <Compile Include="Classes\EContents.cs" />
-    <Compile Include="Classes\MainAbstract\AAlarm.cs" />
     <Compile Include="Classes\MainAbstract\ADailyProperty.cs" />
     <Compile Include="Classes\MainAbstract\AMemos.cs" />
     <Compile Include="Classes\MainAbstract\ASchedules.cs" />
@@ -122,27 +115,6 @@
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Tasks.cs" />
     <Compile Include="Classes\WaffleTask.cs" />
-    <Compile Include="Data\Json.cs" />
-    <Compile Include="Data\JsonClasses\Abstract\AJson.cs" />
-    <Compile Include="Data\JsonClasses\Interface\IJsonAnalyzer.cs" />
-    <Compile Include="Data\JsonClasses\Interface\IJsonFileManager.cs" />
-    <Compile Include="Data\JsonClasses\Interface\IJsonItemManager.cs" />
-    <Compile Include="Data\JsonClasses\Interface\Implement\JsonImplement.cs" />
-    <Compile Include="Data\SQLiteDB.cs" />
-    <Compile Include="Data\SQLite\Abstract\ASQLiteDB.cs" />
-    <Compile Include="Data\SQLite\Interface\IDataSetAnalyzer.cs" />
-    <Compile Include="Data\SQLite\Interface\IDBFileManager.cs" />
-    <Compile Include="Data\SQLite\Interface\IDBItemManager.cs" />
-    <Compile Include="Data\SQLite\Interface\Implement\DBManagerImplement.cs" />
-    <Compile Include="HttpWaffle\Abstract\AWaffle.cs" />
-    <Compile Include="HttpWaffle\Abstract\AWkuWebReq.cs" />
-    <Compile Include="HttpWaffle\Interface\IHtmlAnalyzer.cs" />
-    <Compile Include="HttpWaffle\Interface\Implement\HtmlAnalyzer.cs" />
-    <Compile Include="HttpWaffle\Interface\Implement\WebSession.cs" />
-    <Compile Include="HttpWaffle\Interface\IWebSession.cs" />
-    <Compile Include="HttpWaffle\Waffle.cs" />
-    <Compile Include="HttpWaffle\WafflePage.cs" />
-    <Compile Include="HttpWaffle\WkuWebReq.cs" />
     <Compile Include="WPF_xamls\EditorCalendar.xaml.cs">
       <DependentUpon>EditorCalendar.xaml</DependentUpon>
     </Compile>
@@ -215,6 +187,7 @@
     <Resource Include="Font\Dongle-Regular.ttf" />
     <Resource Include="Font\KCC-Ganpan.ttf" />
     <Resource Include="Font\KCC-Ganpan.otf" />
+    <None Include="content\net40\App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -337,15 +310,21 @@
   <ItemGroup>
     <Resource Include="Icon\trash-can-red.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLLs\AnniversaryAPI.dll" />
+    <Content Include="DLLs\CroffleDataManager.dll" />
+    <Content Include="DLLs\DBFileManager.dll" />
+    <Content Include="DLLs\HttpManager.dll" />
+    <Content Include="DLLs\Newtonsoft.Json.dll" />
+    <Content Include="DLLs\WaffleHttp.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
 </Project>

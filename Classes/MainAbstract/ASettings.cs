@@ -1,6 +1,4 @@
-﻿using Croffle.Data.SQLite;
-
-namespace Croffle.Classes.MainAbstract
+﻿namespace Croffle.Classes.MainAbstract
 {
     internal abstract class ASettings
     {

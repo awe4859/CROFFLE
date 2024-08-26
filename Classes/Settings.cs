@@ -1,9 +1,8 @@
 ﻿using Croffle.Classes.MainAbstract;
 using Croffle.Classes.MainInterface;
 using Croffle.Classes.MainInterface.Implement;
-using Croffle.Data.SQLite;
+using CroffleDataManager.SQLiteDB;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
@@ -22,34 +21,39 @@ namespace Croffle.Classes
     /// </summary>
     internal class Settings : ASettings
     {
-        SQLiteDB sql;
+        SQLiteDB db;
 
         ISetting _Setting = new _Setting() as ISetting;
         internal bool logged_in = false;
         private byte[] pkey = new byte[8];
         private string waffleid, wafflepw;
+        
+        private string sAccount = Contents.Name(EContents.eAccount);
+        private string sSetting = Contents.Name(EContents.eSetting);
 
         /// <summary>
         /// Initializing - Setting을 Load하고 Table확인.
         /// </summary>
         internal Settings()
         {
-            sql = new SQLiteDB();
+            db = new SQLiteDB();
 
-            sql.Initialize(Contents.Name(EContents.eAccount), Account_Struct());
-            sql.SQL_Get_Table("*", Contents.Name(EContents.eAccount), "", out List<DataTable> tables);
-            var res = tables[0].Rows.Count;
+            Initialize();
+        } // Settings
 
-            //계정 정보 있음
-            if (res != 0) { LoadAccount(); logged_in = true; }
-            //없음
+        internal void Initialize()
+        {
+            db.LoadOnDB(sAccount, out DataTable table);
+            var row_count = table.Rows.Count;
+
+            if (row_count != 0) { LoadAccount(); logged_in = true; }
             else { logged_in = false; }
 
-            res = sql.Initialize(Contents.Name(EContents.eSetting), Setting_Struct());
-            if (res == 0) SaveSetting(); //기본 세팅값을 생성하여 저장
-
-            LoadSetting();
-        }
+            db.LoadOnDB(sSetting, out table);
+            row_count = table.Rows.Count;
+            if (row_count != 0) { LoadSetting(); }
+            else { SaveSetting(); }
+        } // Initialize
 
 
         /// <summary>
@@ -60,20 +64,20 @@ namespace Croffle.Classes
         {
             var result = _Setting.GeneratePKEY(out pkey);
             return result;
-        }
+        } // GenerateKey
 
         internal void SetAccount(string ID, string PW)
         {
             waffleid = ID;
             wafflepw = PW;
             GenerateKey();
-        }
+        } // SetAccount
 
         internal void GetAccount(out string userid, out string userpw)
         {
             userid = waffleid;
             userpw = wafflepw;
-        }
+        } // GetAccount
 
         /// <summary>
         /// 계정 정보를 DB에 저장합니다.
@@ -81,47 +85,32 @@ namespace Croffle.Classes
         internal override int SaveAccount()
         {
             _Setting.DES_((int)ModeDES.Encrypt, ref waffleid, ref wafflepw, ref pkey, out string en_id, out string en_pw);
-            string table = Contents.Name(EContents.eAccount);
-            var res1 = sql.SQL_Set_Data(table, "userid", $@"SELECT 'userid', '{en_id}'");
-            var res2 = sql.SQL_Set_Data(table, "userpw", $@"SELECT 'userpw', '{en_pw}'");
-            var res3 = sql.SQL_Set_Data(table, "pkey", $@"SELECT 'pkey', '{Convert.ToBase64String(pkey)}'");
-
-            return res1 * res2 * res3;
-        }
+            db.SaveOnDB(sAccount, $@"'userid', '{en_id}'");
+            db.SaveOnDB(sAccount, $@"'userpw', '{en_pw}'");
+            db.SaveOnDB(sAccount, $@"'pkey', '{Convert.ToBase64String(pkey)}'");
+            return 1;
+        } // SaveAccount
 
         /// <summary>
         /// 계정 정보를 DB에서 Load합니다
         /// </summary>
         internal override int LoadAccount()
         {
-            string table = Contents.Name(EContents.eAccount);
-            int result;
+            db.LoadOnDB(sAccount, "0", out DataTable table);
+            string en_id = table.Rows[0]["userid"].ToString();
+            string en_pw = table.Rows[0]["userpw"].ToString();
+            pkey = Convert.FromBase64String(table.Rows[0]["pkey"].ToString());
 
-            try
-            {
-                sql.SQL_Get_Table($@"value", table, "contentsID='userid'", out List<DataTable> tables);
-                string en_id = tables[0].Rows[0][0].ToString();
-
-                sql.SQL_Get_Table($@"value", table, "contentsID='userpw'", out tables);
-                string en_pw = tables[0].Rows[0][0].ToString();
-
-                sql.SQL_Get_Table($@"value", table, "contentsID='pkey'", out tables);
-                pkey = Convert.FromBase64String(tables[0].Rows[0][0].ToString());
-
-                result = _Setting.DES_((int)ModeDES.Decrypt, ref en_id, ref en_pw, ref pkey, out waffleid, out wafflepw);
-            }
-            catch (ArgumentNullException) { return 0; }
-            catch (Exception) { return 0; }
             logged_in = true;
 
-            return result;
-        }
+            return 1;
+        } // LoadAccount
 
         internal int RemoveAccount()
         {
-            string table = Contents.Name(EContents.eAccount);
-            return sql.SQL_Reset_Data(table);
-        }
+            db.ResetTable(sAccount);
+            return 1;
+        } // RemoveAccount
 
         /// <summary>
         /// 세팅 값을 DB에서 가져옵니다.
@@ -130,36 +119,46 @@ namespace Croffle.Classes
         /// <returns></returns>
         internal override int LoadSetting()
         {
-            string table = Contents.Name(EContents.eSetting);
             var fields = typeof(ASettings).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            db.LoadOnDB(sSetting, out DataTable table);
 
             foreach (var field in fields)
             {
+                DataRow[] row;
                 if (field.FieldType == typeof(bool))
                 {
-                    List<DataTable> tables;
-                    sql.SQL_Get_Table($@"value", table, $@"contentsID='{field.Name}'", out tables);
+                    row = table.Select($@"keyname = '{field.Name}'");
                     string value;
-                    if (tables != null)
-                    {
-                        if (tables[0].Rows.Count > 0)
-                        {
-                            value = tables[0].Rows[0][0].ToString();
-                        }
-                        else value = null;
-                    }
+                    if(row.Length >0) value = row[0]["value"].ToString();
                     else value = null;
 
                     if (value != null)
                     {
-                        try { field.SetValue(this, Convert.ToBoolean(value)); }
-                        catch (FormatException) {  return 0; }
+                        var res = bool.TryParse(value, out bool cValue);
+                        if (res) field.SetValue(this, cValue);
+                        else return 0;
                     }
                     else return 0;
                 }
+                else if (field.FieldType == typeof(int))
+                {
+                    row = table.Select($@"keyname = '{field.Name}'");
+                    string value;
+                    if (row.Length > 0) value = row[0]["value"].ToString();
+                    else value = null;
+
+                    if (value != null)
+                    {
+                        var res = int.TryParse(value, out int cValue);
+                        if (res) field.SetValue(this, cValue);
+                        else return 0;
+                    }
+                    else return 0;
+                }
+                else return 0;
             }
             return 1;
-        }
+        } // LoadSetting
 
         /// <summary>
         /// 세팅값을 DB에 저장합니다. 오류 발생 시 0을 반환합니다.
@@ -168,57 +167,22 @@ namespace Croffle.Classes
         /// <returns></returns>
         internal override int SaveSetting()
         {
-            string table = Contents.Name(EContents.eSetting);
             var fields = typeof(ASettings).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             foreach (var field in fields)
             {
                 if (field.FieldType == typeof(bool))
                 {
-                    var value = Convert.ToBoolean(field.GetValue(this));
-                    string sql_value = $@"SELECT '{field.Name}', {value}";
-
-                    var result = sql.SQL_Set_Data(table, field.Name, sql_value);
-                    if (result == 0) return 0;
+                    db.SaveOnDB(sSetting, $@"'{field.Name}', '{field.GetValue(this)}'");
                 }
 
                 else if (field.FieldType == typeof(int))
                 {
-
-                    int value = Convert.ToInt32(field.GetValue(this));
-                    string sql_value = $@"SELECT '{field.Name}', {value}";
-
-                    var result = sql.SQL_Set_Data(table, field.Name, sql_value);
-                    if (result == 0) return 0;
+                    db.SaveOnDB(sSetting, $@"'{field.Name}', '{field.GetValue(this)}'");
                 }
+
                 else return 0;  // if문을 조건을 만족하지 않는 경우 무조건 return 0을 하기 때문에 오류 발생
             }
             return 1;
-        }
-
-        /// <summary>
-        /// DB에서 setting 테이블의 구조를 선언하기 위한 sql명령을 문자열로 반환합니다.
-        /// </summary>
-        /// <returns></returns>
-        private string Setting_Struct()
-        {
-            string table_struct = @"
-CREATE TABLE setting
-(contentsID text NOT NULL PRIMARY KEY,
-value boolean NOT NULL DEFAULT false)";
-            return table_struct;
-        }
-
-        /// <summary>
-        /// DB에서 account 테이블의 구조를 선언하기 위한 sql명령을 문자열로 반환합니다.
-        /// </summary>
-        /// <returns></returns>
-        private string Account_Struct()
-        {
-            string table_struct = $@"
-CREATE TABLE account
-(contentsID text NOT NULL PRIMARY KEY,
- value text NOT NULL)";
-            return table_struct;
         }
     }
 }

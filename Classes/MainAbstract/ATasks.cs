@@ -1,5 +1,4 @@
-﻿using Croffle.Data.SQLite;
-using System;
+﻿using System;
 
 namespace Croffle.Classes.MainAbstract
 {
@@ -13,20 +12,16 @@ namespace Croffle.Classes.MainAbstract
         /// <summary>
         /// 일정 시작 시간
         /// </summary>
-        internal DateTime scheduleTime;
+        internal DateTime deadline;
         
         /// <summary>
         /// 알람 켜짐 여부
         /// </summary>
-        internal bool whether_Alarm = false;
+        internal bool bAlarm = false;
 
         /// <summary>
         /// 스케줄 완료 여부
         /// </summary>
-        internal bool done = false;
-
-        internal abstract void SaveOnDB();
-        internal abstract void LoadOnDB(string contentsID);
-        internal abstract void DeleteOnDB();
+        internal bool bDone = false;
     }
 }

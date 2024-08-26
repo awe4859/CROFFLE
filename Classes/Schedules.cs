@@ -1,5 +1,5 @@
 ﻿using Croffle.Classes.MainAbstract;
-using Croffle.Data.SQLite;
+using CroffleDataManager.SQLiteDB;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,17 +8,16 @@ namespace Croffle.Classes
 {
     internal class Schedules : ASchedules
     {
-        SQLiteDB sql;
+        SQLiteDB db;
 
         /// <summary>
         /// Initializing
         /// </summary>
         internal Schedules()
         {
-            sql = new SQLiteDB();
+            db = new SQLiteDB();
             contents_name = Contents.Name(EContents.eSchedule);
-            sql.Initialize(contents_name, Schedule_Struct());
-        }
+        } // Schedules
 
         /// <summary>
         /// 생성과 함께 DB에서 데이터를 Load
@@ -26,42 +25,11 @@ namespace Croffle.Classes
         /// <param name="sql">SQLiteDB 객체</param>
         internal Schedules(string contentsID)
         {
-            sql = new SQLiteDB();
+            db = new SQLiteDB();
             contents_name = Contents.Name(EContents.eSchedule);
+            s
             LoadOnDB(contentsID);
-            sql.Initialize(contents_name, Schedule_Struct());
-        }
-
-        /// <summary>
-        /// 새로운 ID를 생성함. 형식: S{yyMMdd}{00}
-        /// </summary>
-        protected override void GenerateID()
-        {
-            string search = $@"
-SELECT contentsID
-FROM {contents_name}
-ORDER BY contentsID DESC";
-
-            sql.SQL_Search(search, out DataSet dataSet);
-            string ID;
-            int count;
-            if (dataSet != null)
-            {
-                if (dataSet.Tables.Count > 0)
-                {
-                    if (dataSet.Tables[0].Rows.Count > 0)
-                    {
-                        ID = dataSet.Tables[0].Rows[0][0].ToString();
-                        count = Convert.ToInt32(ID.Substring(7));
-                    }
-                    else count = -1;
-                }
-                else count = -1;
-            }
-            else count = -1;
-            string result = $@"S{DateTime.Now:yyMMdd}{count + 1:00}";
-            contentsID = result;
-        }
+        } // Schedules
 
         /// <summary>
         /// DB에서 데이터를 Load
@@ -69,20 +37,61 @@ ORDER BY contentsID DESC";
         /// <param name="sql">SQLiteDB 객체</param>
         internal override void LoadOnDB(string contentsID)
         {
-            sql.SQL_Get_Table("*", contents_name, $@"contentsID='{contentsID}'", out List<DataTable> tables);
-            var values = tables[0].Rows[0];
+            db.LoadOnDB(contents_name, contentsID, out DataTable table);
+            if( table.Rows.Count == 0)
+            {
+                throw new ArgumentNullException("No data found for ID");
+            }
+            if( table.Rows.Count > 1)
+            {
+                throw new ArgumentOutOfRangeException("Too many data found for ID");
+            }
 
+            var values = table.Rows[0];
+            var fail_list = new List<string>();
+
+            // contentsID
             this.contentsID = contentsID;
-            whens = DateTime.Parse(values["sche_date"].ToString());
-            scheduleTime = DateTime.Parse(values["start_time"].ToString());
-            endTime = DateTime.Parse(values["end_time"].ToString());
+            // whens
+            var parse = DateTime.TryParse(values["sche_date"].ToString(), out whens);
+            if(!parse) fail_list.Add($@"sche_date: {values["sche_date"].ToString()}");
+            // startTime
+            parse = DateTime.TryParse(values["start_time"].ToString(), out startTime);
+            if(!parse) fail_list.Add($@"start_time: {values["start_time"].ToString()}");
+            // endTime
+            parse = DateTime.TryParse(values["end_time"].ToString(), out endTime);
+            if(!parse) fail_list.Add($@"end_time: {values["end_time"].ToString()}");
+            // title
             title = values["title"].ToString();
-            color_argb = Convert.ToInt32(values["color"].ToString());
+            // color
+            parse = int.TryParse(values["color"].ToString(), out color_argb);
+            if(!parse) fail_list.Add($@"color: {values["color"].ToString()}");
+            // place
             place = values["place"].ToString();
-            whether_Alarm = Convert.ToBoolean(Convert.ToInt32(values["alarm"]));
-            done = Convert.ToBoolean(Convert.ToInt32(values["done"]));
-            canceled = Convert.ToBoolean(Convert.ToInt32(values["canceled"]));
-        }
+            // alarm
+            parse = bool.TryParse(values["alarm"].ToString(), out bAlarm);
+            if(!parse) fail_list.Add($@"alarm: {values["alarm"].ToString()}");
+            // done
+            parse = bool.TryParse(values["done"].ToString(), out bDone);
+            if(!parse) fail_list.Add($@"done: {values["done"].ToString()}");
+            // repeat
+            parse = bool.TryParse(values["repeat"].ToString(), out bRepeat);
+            if(!parse) fail_list.Add($@"repeat: {values["repeat"].ToString()}");
+            // canceled
+            parse = bool.TryParse(values["canceled"].ToString(), out bCanceled);
+            if(!parse) fail_list.Add($@"canceled: {values["canceled"].ToString()}");
+
+            // failed to parse
+            if (fail_list.Count > 0)
+            {
+                Console.WriteLine($@"[Task] Load: failed to parse data");
+                foreach (var fail in fail_list)
+                {
+                    Console.WriteLine($@"  - {fail}");
+                }
+                throw new FormatException("Failed to parse data");
+            }
+        } // LoadOnDB
 
         /// <summary>
         /// DB에 현 객체의 데이터를 저장(덮어쓰기)
@@ -91,9 +100,12 @@ ORDER BY contentsID DESC";
         internal override void SaveOnDB()
         {
             if(contentsID == "" || contentsID == null) GenerateID();
-            var sql_string = sql.Get_SQL_String(contentsID, scheduleTime, endTime, title, color_argb, place, whether_Alarm, done, canceled);
-            sql.SQL_Set_Data(contents_name, contentsID, sql_string);
-        }
+            var value = $@"'{contentsID}', date('{whens:yyyy-MM-dd}'), datetime('{startTime:yyyy-MM-dd HH:mm}'), "
+                + $@"datetime('{endTime:yyyy-MM-dd HH:mm}'), datetime('{DateTime.Now: yyyy-MM-dd HH:mm}'), "
+                + $@"'{title}', {color_argb}, '{place}', {bAlarm}, {bDone}, {bRepeat}, {bCanceled}";
+
+            db.SaveOnDB(contents_name, value);
+        } // SaveOnDB
 
         /// <summary>
         /// 현재 Object를 DB에서 삭제
@@ -101,48 +113,7 @@ ORDER BY contentsID DESC";
         /// <param name="sql">SQLiteDB 객체</param>
         internal override void DeleteOnDB()
         {
-            sql.SQL_Del_Data(contents_name, contentsID);
-        }
-
-
-        /// <summary>
-        /// DB에서 schedule 테이블을 생성하기 위한 sql 문장을 반환합니다.
-        /// </summary>
-        /// <returns></returns>
-        private string Schedule_Struct()
-        {
-            string table_struct = @"
-CREATE TABLE schedule
-(contentsID varchar(9) NOT NULL PRIMARY KEY,
- sche_date date,
- start_time datetime,
- end_time datetime,
- added_time datetime DEFAULT (date('now')),
- title varchar(50),
- color integer,
- place varchar(20),
- alarm bool DEFAULT false,
- done bool DEFAULT false,
- canceled bool DEFAULT false,
- CHECK (contentsID LIKE 'S%'),
- CHECK (end_time >= start_time) )";
-            return table_struct;
-        }
-    }
-}
-/*
-CREATE TABLE schedule
-(contentsID varchar(9) NOT NULL PRIMARY KEY,
- sche_date date,
- start_time datetime,
- end_time datetime,
- added_time datetime DEFAULT (date('now')),
- title varchar(50),
- color integer,
- place varchar(20),
- alarm bool DEFAULT false,
- done bool DEFAULT false,
- canceled bool DEFAULT false,
- CHECK (contentsID LIKE 'S%'),
- CHECK (end_time >= start_time) );
- */
+            db.DeleteOnDB(contents_name, contentsID);
+        } // DeleteOnDB
+    } // Schedules
+} // namespace Croffle.Classes

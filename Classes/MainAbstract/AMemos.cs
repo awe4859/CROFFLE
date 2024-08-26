@@ -1,6 +1,4 @@
-﻿using Croffle.Data.SQLite;
-
-namespace Croffle.Classes.MainAbstract
+﻿namespace Croffle.Classes.MainAbstract
 {
     internal abstract class AMemos : ADailyProperty
     {
@@ -9,12 +7,6 @@ namespace Croffle.Classes.MainAbstract
         /// </summary>
         internal string detailText = null;
         internal readonly int detailMaxByte = 50;
-
-        internal abstract void Load(string contentsID);
-
-        internal abstract void SaveData();
-
-        internal abstract void DeleteMemo();
 
         //내용 수정 (후 저장)
         internal abstract void ModifyDetailText(string newDetailText);

@@ -1,6 +1,5 @@
 ﻿using Croffle.Classes.MainAbstract;
-using Croffle.Data.JsonClasses;
-using Croffle.Data.SQLite;
+using CroffleDataManager.SQLiteDB;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,19 +11,14 @@ namespace Croffle.Classes
     /// </summary>
     internal class Memos : AMemos
     {
-        private readonly Json json;
-        SQLiteDB sql;
-
         /// <summary>
         /// Initializing - DB의 memotable과 Json 클래스 초기화
         /// </summary>
         /// <param name="sql">SQLiteDB 객체</param>
         internal Memos() {
-            sql = new SQLiteDB();
+            db = new SQLiteDB();
             contents_name = Contents.Name(EContents.eMemo);
-            sql.Initialize(contents_name, Memo_Struct());
-            json = new Json("memos.json");
-        }
+        } // Memos
 
         /// <summary>
         /// 생성과 함께 데이터를 Load
@@ -32,77 +26,76 @@ namespace Croffle.Classes
         /// <param name="sql">SQLiteDB 객체</param>
         internal Memos(string contentsID)
         {
-            sql = new SQLiteDB();
+            db = new SQLiteDB();
             contents_name = Contents.Name(EContents.eMemo);
-            sql.Initialize(contents_name, Memo_Struct());
-            json = new Json("memos.json");
 
-            Load(contentsID);
-        }
-
-        /// <summary>
-        /// ID를 새로 생성
-        /// </summary>
-        /// <param name="sql">SQLiteDB 객체</param>
-        protected override void GenerateID()
-        {
-            string search = $@"
-SELECT contentsID
-FROM {contents_name}
-ORDER BY contentsID DESC";
-
-            sql.SQL_Search(search, out DataSet dataSet); string ID;
-            int count;
-            if (dataSet != null)
-            {
-                if (dataSet.Tables.Count > 0)
-                {
-                    if (dataSet.Tables[0].Rows.Count > 0)
-                    {
-                        ID = dataSet.Tables[0].Rows[0][0].ToString();
-                        count = Convert.ToInt32(ID.Substring(7));
-                    }
-                    else count = -1;
-                }
-                else count = -1;
-            }
-            else count = -1;
-
-            string result = $@"M{DateTime.Now:yyMMdd}{count + 1:00}";
-            contentsID = result;
-        }
+            LoadOnDB(contentsID);
+        } // Memos
 
         /// <summary>
         /// 데이터를 로드
         /// </summary>
         /// <param name="sql">SQLiteDB 객체</param>
-        internal override void Load(string contentsID)
+        internal override void LoadOnDB(string contentsID)
         {
-            sql = new SQLiteDB();
-            json.LoadJObject();
+            Console.WriteLine($@"[Memo] Load: loading data from DB");
 
-            sql.SQL_Get_Table("*", contents_name, $@"contentsID='{contentsID}'", out List<DataTable> tables);
-            var values = tables[0].Rows[0];
+            db.LoadOnDB(contents_name, contentsID, out DataTable table);
+            // 데이터가 없을 경우
+            if(table.Rows.Count == 0)
+            {
+                Console.WriteLine($@"> [Load] no data found for ID: {contentsID}");
+                throw new ArgumentNullException("No data found for ID");
+            }
+            // 데이터가 여러개일 경우
+            if(table.Rows.Count > 1)
+            {
+                Console.WriteLine($@"> [Load] too many data found for ID: {contentsID}");
+                throw new ArgumentOutOfRangeException("Too many data found for ID");
+            }
+
+            var values = table.Rows[0];
+            var fail_list = new List<string>();
+
+            // ContentsID
             this.contentsID = contentsID;
-            whens = DateTime.Parse(values["memo_day"].ToString());
+            // whens
+            var parse = DateTime.TryParse(values["memo_date"].ToString(), out whens);
+            if (!parse) fail_list.Add($@"whens: {values["memo_date"].ToString()}");
+            // title
             title = values["title"].ToString();
-            color_argb = Convert.ToInt32(values["color"].ToString());
+            // color
+            parse = int.TryParse(values["color"].ToString(), out color_argb);
+            if (!parse) fail_list.Add($@"color: {values["color"].ToString()}");
+            // detailText
+            detailText = values["contents"].ToString();
 
-            json.FindItem(contentsID, out detailText);
-        }
+            // failed to parse
+            if (fail_list.Count > 0)
+            {
+                Console.WriteLine($@"> [Load] failed to parse: ");
+                foreach (var fail in fail_list)
+                {
+                    Console.WriteLine($@"  - {fail}");
+                }
+                throw new FormatException("Failed to parse");
+            }
+        } // LoadOnDB
 
         /// <summary>
         /// 데이터를 저장
         /// </summary>
         /// <param name="sql">SQLiteDB 객체</param>
-        internal override void SaveData()
+        internal override void SaveOnDB()
         {
+            Console.WriteLine($@"[Memo] SaveData: saving data to DB");
+            
             if (contentsID == "" || contentsID == null) GenerateID();
-            string select = sql.Get_SQL_String(contentsID, whens, title, color_argb);
-            sql.SQL_Set_Data(contents_name, contentsID, select);
-            Json json = new Json("memos.json");
-            json.AddItem(contentsID, detailText);
-        }
+            string values = $@"'{contentsID}', date('{whens:yyyy-MM-dd}'),"
+                + $@" datetime('{DateTime.Now:yyyy-MM-dd HH:mm:ss}'), '{title}', {color_argb}, "
+                + $@"'{detailText}'";
+            db.SaveOnDB(contents_name, values);
+        } // SaveOnDB
 
         /// </summary>
         ///Memo 내용 Modify후 save
@@ -110,27 +103,12 @@ ORDER BY contentsID DESC";
         internal override void ModifyDetailText(string newDetailText)
         {
             detailText = newDetailText;
-            json.AddItem(contentsID, detailText);
-        }
+            SaveOnDB();
+        } // ModifyDetailText
 
-        internal override void DeleteMemo()
+        internal override void DeleteOnDB()
         {
-            sql.SQL_Del_Data(Contents.Name(EContents.eMemo), contentsID);
-            Json json = new Json("memos.json");
-            json.RemoveItem(contentsID);
-        }
-
-        internal string Memo_Struct()
-        {
-            string table_struct = @"
-CREATE TABLE memo
-(contentsID varchar(9) NOT NULL PRIMARY KEY,
-memo_day date,
-added_time datetime DEFAULT (date('now')),
-title varchar(50),
-color integer,
-CHECK (contentsID LIKE 'M%'))";
-            return table_struct;
-        }
-    }
-}
+            db.DeleteOnDB(contents_name, contentsID);
+        } // DeleteOnDB
+    } // Memos
+} // namespace Croffle.Classes
