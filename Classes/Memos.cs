@@ -1,10 +1,10 @@
-﻿using Croffle.Classes.MainAbstract;
+﻿using CROFFLE_WPF.Classes.MainAbstract;
 using CroffleDataManager.SQLiteDB;
 using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace Croffle.Classes
+namespace CROFFLE_WPF.Classes
 {
     /// <summary>
     ///메모 클래스

@@ -6,9 +6,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FF49B772-395F-421C-B7E7-E32296E86068}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>CROFFLE_WPF</RootNamespace>
-    <AssemblyName>CROFFLE_WPF</AssemblyName>
+    <AssemblyName>Croffle</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>게시\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -53,7 +53,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>CROFFLE_WPF.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon\croffle.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AnniversaryAPI">
@@ -108,6 +111,7 @@
     <Compile Include="Classes\MainAbstract\ASchedules.cs" />
     <Compile Include="Classes\MainAbstract\ASettings.cs" />
     <Compile Include="Classes\MainAbstract\ATasks.cs" />
+    <Compile Include="Classes\MainAbstract\AWaffleTask.cs" />
     <Compile Include="Classes\MainInterface\Implement\SettingImplement.cs" />
     <Compile Include="Classes\MainInterface\ISetting.cs" />
     <Compile Include="Classes\Memos.cs" />
@@ -115,52 +119,71 @@
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Tasks.cs" />
     <Compile Include="Classes\WaffleTask.cs" />
-    <Compile Include="WPF_xamls\EditorCalendar.xaml.cs">
+    <Compile Include="WPF_xamls\AlarmManager.cs" />
+    <Compile Include="WPF_xamls\Dialog\ConfirmDialog.xaml.cs">
+      <DependentUpon>ConfirmDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\Dialog\OkCancel_DIalog.xaml.cs">
+      <DependentUpon>OkCancel_DIalog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\Dialog\EditorCalendar.xaml.cs">
       <DependentUpon>EditorCalendar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\Page\AlarmPage.xaml.cs">
+    <Compile Include="WPF_xamls\Editor\EditorWindow.cs" />
+    <Compile Include="WPF_xamls\Editor\WaffleInfo.xaml.cs">
+      <DependentUpon>WaffleInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\NotifyForms.cs" />
+    <Compile Include="WPF_xamls\Pages\AlarmPage.xaml.cs">
       <DependentUpon>AlarmPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\Page\Calendar.xaml.cs">
-      <DependentUpon>Calendar.xaml</DependentUpon>
+    <Compile Include="WPF_xamls\Pages\CalendarPage.xaml.cs">
+      <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\Page\InfoPage.xaml.cs">
+    <Compile Include="WPF_xamls\Pages\InfoPage.xaml.cs">
       <DependentUpon>InfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\UserControl\DailyControl.xaml.cs">
+    <Compile Include="WPF_xamls\Controls\DailyControl.xaml.cs">
       <DependentUpon>DailyControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\DailyInfo.xaml.cs">
+    <Compile Include="WPF_xamls\Pages\LoginPage.cs" />
+    <Compile Include="WPF_xamls\Windows\AlarmWindow.xaml.cs">
+      <DependentUpon>AlarmWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\Windows\DailyInfo.xaml.cs">
       <DependentUpon>DailyInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\UserControl\DailyInfoControl.xaml.cs">
+    <Compile Include="WPF_xamls\Controls\DailyInfoControl.xaml.cs">
       <DependentUpon>DailyInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\Page\GeneralPage.xaml.cs">
+    <Compile Include="WPF_xamls\Pages\GeneralPage.xaml.cs">
       <DependentUpon>GeneralPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF_xamls\MainGround.xaml.cs">
       <DependentUpon>MainGround.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\MemoEditor.xaml.cs">
+    <Compile Include="WPF_xamls\Editor\MemoEditor.xaml.cs">
       <DependentUpon>MemoEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\UserControl\Onoff_Control.xaml.cs">
+    <Compile Include="WPF_xamls\Controls\Onoff_Control.xaml.cs">
       <DependentUpon>Onoff_Control.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\Preferences.xaml.cs">
+    <Compile Include="WPF_xamls\Windows\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_xamls\Windows\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\ScheduleEditor.xaml.cs">
+    <Compile Include="WPF_xamls\Editor\ScheduleEditor.xaml.cs">
       <DependentUpon>ScheduleEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\TaskEditor.xaml.cs">
+    <Compile Include="WPF_xamls\Editor\TaskEditor.xaml.cs">
       <DependentUpon>TaskEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\Page\WaffleLoginPage.xaml.cs">
+    <Compile Include="WPF_xamls\Pages\WaffleLoginPage.xaml.cs">
       <DependentUpon>WaffleLoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF_xamls\Page\WaffleUserPage.xaml.cs">
+    <Compile Include="WPF_xamls\Pages\WaffleUserPage.xaml.cs">
       <DependentUpon>WaffleUserPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -208,7 +231,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2%28x86 및 x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -218,35 +241,51 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="WPF_xamls\EditorCalendar.xaml">
+    <Page Include="WPF_xamls\Dialog\ConfirmDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\Page\AlarmPage.xaml">
+    <Page Include="WPF_xamls\Dialog\OkCancel_DIalog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\Page\Calendar.xaml">
+    <Page Include="WPF_xamls\Dialog\EditorCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\Page\InfoPage.xaml">
+    <Page Include="WPF_xamls\Editor\WaffleInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\UserControl\DailyControl.xaml">
+    <Page Include="WPF_xamls\Pages\AlarmPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\DailyInfo.xaml">
+    <Page Include="WPF_xamls\Pages\CalendarPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\UserControl\DailyInfoControl.xaml">
+    <Page Include="WPF_xamls\Pages\InfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\Page\GeneralPage.xaml">
+    <Page Include="WPF_xamls\Controls\DailyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\Windows\AlarmWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\Windows\DailyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\Controls\DailyInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\Pages\GeneralPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,31 +293,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\MemoEditor.xaml">
+    <Page Include="WPF_xamls\Editor\MemoEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\UserControl\Onoff_Control.xaml">
+    <Page Include="WPF_xamls\Controls\Onoff_Control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\Preferences.xaml">
+    <Page Include="WPF_xamls\Windows\LoadingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\ScheduleEditor.xaml">
+    <Page Include="WPF_xamls\Windows\Preferences.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\TaskEditor.xaml">
+    <Page Include="WPF_xamls\Editor\ScheduleEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\Page\WaffleLoginPage.xaml">
+    <Page Include="WPF_xamls\Editor\TaskEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPF_xamls\Page\WaffleUserPage.xaml">
+    <Page Include="WPF_xamls\Pages\WaffleLoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_xamls\Pages\WaffleUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

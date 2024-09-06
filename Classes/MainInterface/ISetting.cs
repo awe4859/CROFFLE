@@ -1,4 +1,4 @@
-﻿namespace Croffle.Classes.MainInterface
+﻿namespace CROFFLE_WPF.Classes.MainInterface
 {
     internal interface ISetting
     {

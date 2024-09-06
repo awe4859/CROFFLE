@@ -1,0 +1,195 @@
+﻿<local:EditorWindow x:Class="CROFFLE_WPF.WPF_xamls.Editor.MemoEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CROFFLE_WPF.WPF_xamls.Editor"
+        xmlns:local1="clr-namespace:CROFFLE_WPF.WPF_xamls.Controls"
+        mc:Ignorable="d"
+        Title="MemoEditor" Height="410" Width="410" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Grid Margin="5">
+        <!--TitleBar Area-->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border x:Name="titleBar_bd" Grid.Row="0" Background="#FF3CB1FF" CornerRadius="10 10 0 0" BorderThickness="1 1 1 0" BorderBrush="Black"/>
+        <Grid x:Name="titleBarArea" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="main_tb" Grid.Column="0" Background="Transparent" MouseDown="MouseDragTitle">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="tb_Icon" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
+                    <Ellipse Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Icon/croffle.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+
+                <Grid x:Name="tb_Name" Grid.Column="1">
+                    <Label x:Name="tb_Name_lb" Content="편집기" FontFamily="/Font/#KCC-Ganpan" FontSize="18" Foreground="White"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10 0 0 0"/>
+                </Grid>
+            </Grid>
+
+
+            <Grid x:Name="tb_CloseBtn" Grid.Column="1">
+                <Border x:Name="bd_closeBtn" Background="Transparent" CornerRadius=" 0 10 0 0" Margin="0 0 0 0" BorderThickness="0"/>
+                <Label FontFamily="Webdings" Content="r" FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="closeBtn" BorderThickness="0" Foreground="White" Background="Transparent"
+                MouseEnter="MouseEnter_Close" MouseLeave="MouseLeave_Close" Click="MouseClick_Close"/>
+            </Grid>
+        </Grid>
+        <!--TitleBar Area-->
+
+        <!--컨텐츠영역-->
+        <Border x:Name="Content_bd" Grid.Row="1" BorderThickness="1 0 1 1" BorderBrush="Black" Background="WhiteSmoke" CornerRadius="0 0 10 10"/>
+        <Grid x:Name="ContentGrid" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="55"/>
+                </Grid.RowDefinitions>
+                <!--제목영역-->
+                <Grid x:Name="TitleGrid" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="360*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="grid_subject" Grid.Column="0" Margin="15 10 0 10">
+                        <Border BorderThickness="1" CornerRadius="7" BorderBrush="#FF707070"/>
+                        <Label x:Name="lb_title" Content="제목을 입력해주세요" Background="Transparent" BorderBrush="{x:Null}" VerticalAlignment="Center"
+                               HorizontalAlignment="Left" Margin="7" FontFamily="맑은 고딕" FontSize="12" Foreground="DimGray"/>
+                        <TextBox  x:Name="tb_title" Text="" Background="Transparent" BorderBrush="{x:Null}" VerticalContentAlignment="Center"
+                                  HorizontalContentAlignment="Left" Margin="7" FontFamily="맑은 고딕" FontSize="12" Foreground="Black"
+                                  TextChanged="tb_TextChanged" GotFocus="tb_GotFocus" LostFocus="tb_LostFocus"/>
+                    </Grid>
+
+                    <!--Delete Button-->
+                    <Grid x:Name="icon_delete" Grid.Column="1">
+                        <Image x:Name="img_delete" Source="/Icon/trash-can-solid.png" Opacity="0.5" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Button x:Name="btn_delete" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"
+                                BorderThickness="0" MouseEnter="Btn_Delete_MouseEnter" MouseLeave="Btn_Delete_MouseLeave" Click="Btn_Delete_Click"/>
+                    </Grid>
+                </Grid>
+                
+                <!--메모영역-->
+                <Grid x:Name="grid_detail" Grid.Row="1" Margin="15 0 15 0">
+                    <Border CornerRadius="7" BorderBrush="#FF707070" BorderThickness="1"/>
+                    <Label x:Name="lb_detail" Content="내용을 입력해주세요" Background="Transparent" BorderBrush="{x:Null}" VerticalAlignment="Top"
+                           HorizontalAlignment="Left" Margin="5 1 0 0" FontFamily="맑은 고딕" FontSize="12" Foreground="DimGray"/>
+                    <TextBox x:Name="tb_detail" TextWrapping="Wrap" Text="" Foreground="Black"
+                             BorderBrush="Transparent" Background="Transparent" FontFamily="맑은고딕" Margin="7" FontSize="12"
+                             TextChanged="tb_TextChanged" GotFocus="tb_GotFocus" LostFocus="tb_LostFocus"/>
+                </Grid>
+                <!--Footer영역-->
+                <Border x:Name="Footer_bd" Grid.Row="2" CornerRadius="0 0 10 10"/>
+                <Grid x:Name="FooterGrid" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0"/>
+                    
+                    <!--Footer Theme Color 영역-->
+                    <Grid x:Name="Footer_ColorGrid" Grid.Column="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid x:Name="button_Red" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border x:Name="bd_Btn_Red" BorderBrush="Black" BorderThickness="0" CornerRadius="4" Background="#FFFF4419"/>
+                                <Button x:Name="btn_Red" Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}" Click="Btn_Color_Click"/>
+                            </Grid>
+
+                            <Grid x:Name="button_Green" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border x:Name="bd_Btn_Green" BorderBrush="Black" BorderThickness="0" CornerRadius="4" Background="#FF80E12A"/>
+                                <Button x:Name="btn_Green"  Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}" Click="Btn_Color_Click"/>
+                            </Grid>
+
+                            <Grid x:Name="button_Blue" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border x:Name="bd_Btn_Blue" BorderBrush="Black" BorderThickness="0" CornerRadius="4" Background="#FF00A5FF"/>
+                                <Button x:Name="btn_Blue" Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}" Click="Btn_Color_Click"/>
+                            </Grid>
+
+                            <Grid  x:Name="button_Yellow" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border x:Name="bd_Btn_Yellow" BorderBrush="Black" BorderThickness="0" CornerRadius="4" Background="Gold"/>
+                                <Button x:Name="btn_Yellow" Height="30" Width="30" Background="Transparent" BorderBrush="{x:Null}" Click="Btn_Color_Click"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!--Footer 버튼 영역-->
+                    <Grid x:Name="Footer_btns" Grid.Column="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <!--OK Button-->
+                        <Border x:Name="bd_OK" Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
+                        <Label x:Name="lb_OK" Grid.Column="1" Background="Transparent" Content="저장" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                               Height="30" Width="60" Foreground="DimGray" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Padding="0"/>
+                        <Button x:Name="btn_OK" Grid.Column="1" Height="30" Width="60" Background="Transparent" BorderBrush="{x:Null}" IsDefault="True" Click="MouseClick_Save"/>
+                        <!--OK Button-->
+
+                        <!--Cancel Button-->
+                        <Border x:Name="bd_Cancel" Grid.Column="3" Background="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
+                        <Label x:Name="lb_Cancel" Grid.Column="3" Background="Transparent" Content="취소" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                               Height="30" Width="60" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Padding="0"/>
+                        <Button x:Name="btn_CanCel" Grid.Column="3" Height="30" Width="60" Background="Transparent" BorderBrush="{x:Null}" IsCancel="True" Click="MouseClick_Close"/>
+                        <!--Cancel Button-->
+                    </Grid>
+                    <!--Footer_Btns-->
+                </Grid>
+                <!--Footers-->
+            </Grid>
+            <!--Contents-->
+        </Grid>
+    </Grid>
+    <!--Window 내 여러 개의 Control을 Target으로 Property를 Define-->
+    <Window.Resources>
+        <!--Button.Template로 접근-->
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+</local:EditorWindow>

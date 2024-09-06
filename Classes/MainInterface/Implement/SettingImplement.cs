@@ -1,14 +1,9 @@
-﻿using Croffle.Data.JsonClasses;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Croffle.Classes.MainInterface.Implement
+namespace CROFFLE_WPF.Classes.MainInterface.Implement
 {
     internal class SettingImplement : ISetting
     {

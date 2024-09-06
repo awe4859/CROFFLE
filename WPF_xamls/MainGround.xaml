@@ -6,38 +6,54 @@
         xmlns:local="clr-namespace:CROFFLE_WPF"
         xmlns:local1="clr-namespace:CROFFLE_WPF.WPF_xamls"
         x:Class="CROFFLE_WPF.WPF_xamls.MainGround"
-        mc:Ignorable="d"
-        Title="MainGround" Height="735" Width="1050" WindowStyle="None" Background="Transparent" MinWidth="1050" MinHeight="730" AllowsTransparency="True">
-    <Grid>
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="MainGround" Height="745" Width="1060" WindowStyle="None" Background="Transparent"
+        MinWidth="1060" MinHeight="745" AllowsTransparency="True" Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip">
+    <Grid Margin="5">
+        <!--TitleBar Area-->
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <!--TitleBar Area-->
         <Border x:Name="titleBar_bd" Grid.Row="0" Background="#FF3CB1FF" CornerRadius="10 10 0 0"/>
         <Grid x:Name="titleBarArea" Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="45"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="35"/>
             </Grid.ColumnDefinitions>
-
-            <Grid x:Name="tb_Icon" Grid.Column="0">
+            
+            <Grid x:Name="main_tb" Grid.Column="0" Background="Transparent" MouseDown="MouseDragTitle">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Ellipse Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="/Icon/croffle.png"/>
-                    </Ellipse.Fill>
-                </Ellipse>
+                
+                <Grid x:Name="tb_Icon" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
+                    <Ellipse Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Icon/croffle.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+
+                <Grid x:Name="tb_Name" Grid.Column="1">
+                    <Label x:Name="tb_Name_lb" Content="" FontFamily="/Font/#KCC-Ganpan" FontSize="18" Foreground="White"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10 0 0 0"/>
+                </Grid>
             </Grid>
-            <Grid x:Name="tb_Name" Grid.Column="1"/>
-            <Grid x:Name="tb_CloseBtn" Grid.Column="2">
-                <Border Background="Transparent" CornerRadius=" 0 15 0 0" Margin="0 0 0 0" BorderThickness="0"/>
-                <Button x:Name="closeBtn" FontFamily="Webdings" Content="r" FontSize="20" BorderThickness="0" Foreground="White" Background="Transparent"/>
+            
+            
+            <Grid x:Name="tb_CloseBtn" Grid.Column="1">
+                <Border x:Name="bd_closeBtn" Background="Transparent" CornerRadius=" 0 10 0 0" Margin="0 0 0 0" BorderThickness="0"/>
+                <Label FontFamily="Webdings" Content="r" FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="closeBtn" BorderThickness="0" Foreground="White" Background="Transparent"
+                        MouseEnter="MouseEnter_Close" MouseLeave="MouseLeave_Close" Click="MouseClick_Close"/>
             </Grid>
         </Grid>
         <!--TitleBar Area-->
@@ -46,8 +62,8 @@
         <Border x:Name="main_bd" Grid.Row="1" BorderThickness="0" CornerRadius="0 0 10 10" Background="Transparent"/>
         <Grid x:Name="mainArea" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="880"/>
+                <ColumnDefinition Width="17*"/>
+                <ColumnDefinition Width="88*"/>
             </Grid.ColumnDefinitions>
 
             <!--Main Menu-->
@@ -109,25 +125,34 @@
                         <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
                     <!--원광대 홈페이지-->
-                    <Grid x:Name="wkuBtn_Grid" Grid.Row="1">
-                        <Border Background="#FF0881F5"/>
-                        <Label x:Name="wkuBtn_lb" Content="원광대학교" FontFamily="/Font/#KCC-Ganpan" FontSize="20"
-                                Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 0 0 0"/>
-                        <Button x:Name="wkuBtn" Background="Transparent" BorderThickness="0"/>
+                    <Grid x:Name="grid_WkuBtn" Grid.Row="1" MouseEnter="MouseEnter_Hyperlink" MouseLeave="MouseLeave_Hyperlink">
+                        <Border x:Name="bd_wkuBtn" Background="#FF0881F5"/>
+                        <Label x:Name="lb_WkuBtn" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0">
+                            <Hyperlink NavigateUri="https://wku.ac.kr/" RequestNavigate="RequestNavigate" TextDecorations="None">
+                                <Label Content="원광대학교" FontFamily="/Font/#KCC-Ganpan" FontSize="23" 
+                                       Foreground="White" Margin="0 0 0 0" Padding="0"/>
+                            </Hyperlink>
+                        </Label>
                     </Grid>
                     <!--웹정보서비스-->
-                    <Grid x:Name="intraBtn_Grid" Grid.Row="3">
-                        <Border Background="#FF0881F5"/>
-                        <Label x:Name="intraBtn_lb" Content="웹정보서비스" FontFamily="/Font/#KCC-Ganpan" FontSize="20"
-                                Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 4 0 0"/>
-                        <Button x:Name="intraBtn" Background="Transparent" BorderThickness="0"/>
+                    <Grid x:Name="grid_IntraBtn" Grid.Row="3" MouseEnter="MouseEnter_Hyperlink" MouseLeave="MouseLeave_Hyperlink">
+                        <Border x:Name="bd_IntraBtn" Background="#FF0881F5"/>
+                        <Label x:Name="lb_IntraBtn" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0">
+                            <Hyperlink NavigateUri="https://intra.wku.ac.kr/" RequestNavigate="RequestNavigate" TextDecorations="None">
+                                <Label Content="웹정보서비스" FontFamily="/Font/#KCC-Ganpan" FontSize="23" 
+                                       Foreground="White" Margin="0 0 0 0" Padding="0"/>
+                            </Hyperlink>
+                        </Label>
                     </Grid>
                     <!--WAFFLE-->
-                    <Grid x:Name="waffleBtn_Grid" Grid.Row="5">
-                        <Border Background="#FF0881F5"/>
-                        <Label x:Name="waffleBtn_lb" Content="WAFFLE" FontFamily="/Font/#KCC-Ganpan" FontSize="20"
-                                Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 4 0 0"/>
-                        <Button x:Name="waffleBtn" Background="Transparent" BorderThickness="0"/>
+                    <Grid x:Name="grid_WaffleBtn" Grid.Row="5" MouseEnter="MouseEnter_Hyperlink" MouseLeave="MouseLeave_Hyperlink">
+                        <Border x:Name="bd_WaffleBtn" Background="#FF0881F5"/>
+                        <Label x:Name="lb_WaffleBtn" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0">
+                            <Hyperlink NavigateUri="https://waffle.wku.ac.kr/" RequestNavigate="RequestNavigate" TextDecorations="None">
+                                <Label Content="WAFFLE" FontFamily="/Font/#KCC-Ganpan" FontSize="23" 
+                                       Foreground="White" Margin="0 0 0 0" Padding="0"/>
+                            </Hyperlink>
+                        </Label>
                     </Grid>
                 </Grid>
 
@@ -145,14 +170,14 @@
                     <Grid x:Name="quitBtn_Grid" Grid.Column="1" Margin="3">
                         <Ellipse x:Name="quitBtn_bd" Stroke="black" StrokeThickness="1" Fill="#FF4C98F1"/>
                         <Image Source="/Icon/power_icon.png" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Button x:Name="quitBtn" Background="Transparent" BorderThickness="0"/>
+                        <Button x:Name="quitBtn" Background="Transparent" BorderThickness="0" Click="quitBtn_Click"/>
                     </Grid>
 
                     <!--설정버튼-->
                     <Grid x:Name="settingBtn_Grid" Grid.Column="2" Margin="3">
                         <Ellipse x:Name="settingBtn_bd" Stroke="black" StrokeThickness="1" Fill="#FF4C98F1"/>
                         <Image Source="/Icon/setting_icon.png" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Button x:Name="settingBtn" Background="Transparent" BorderThickness="0"/>
+                        <Button x:Name="settingBtn" Background="Transparent" BorderThickness="0" Click="SettingBtn_Click"/>
                     </Grid>
 
                     <!--도움말버튼-->
@@ -182,8 +207,28 @@
 
             <Border Grid.Column="1" BorderThickness="0" Background="White" CornerRadius="0 0 10 0"/>
             <Grid x:Name="pageArea" Grid.Column="1">
-                <Frame x:Name="pageFrame"/>
+                <Frame x:Name="pageFrame" NavigationUIVisibility="Hidden" Padding="0"/>
             </Grid>
         </Grid>
     </Grid>
+    <!--Window 내 여러 개의 Control을 Target으로 Property를 Define-->
+    <Window.Resources>
+        <!--Button.Template로 접근-->
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 </Window>

@@ -1,10 +1,10 @@
-﻿using Croffle.Classes.MainAbstract;
+﻿using CROFFLE_WPF.Classes.MainAbstract;
 using System.Collections.Generic;
 using System;
 using System.Data;
 using CroffleDataManager.SQLiteDB;
 
-namespace Croffle.Classes
+namespace CROFFLE_WPF.Classes
 {
     /// <summary>
     /// 과업
@@ -69,11 +69,13 @@ namespace Croffle.Classes
             if(!parse) fail_list.Add($@"color: {values["color"].ToString()}");
             // place
             place = values["place"].ToString();
+            //etc   
+            etc = values["etc"].ToString();
             // alarm
             parse = bool.TryParse(values["alarm"].ToString(), out bAlarm);
             if(!parse) fail_list.Add($@"alarm: {values["alarm"].ToString()}");
             // done
-            bDone = bool.TryParse(values["done"].ToString(), out bDone);
+            parse = bool.TryParse(values["done"].ToString(), out bDone);
             if(!parse) fail_list.Add($@"done: {values["done"].ToString()}");
 
             if(fail_list.Count > 0)
@@ -97,7 +99,7 @@ namespace Croffle.Classes
             if (contentsID == "" || contentsID == null) GenerateID();
 
             string values = $@"'{contentsID}', date('{whens:yyyy-MM-dd}'), datetime('{deadline:yyyy-MM-dd HH:mm}'), "
-                +$@"datetime('{DateTime.Now:yyyy-MM-dd HH:mm}'), '{title}', {color_argb}, '{place}', {bAlarm}, {bDone}";
+                +$@"datetime('{DateTime.Now:yyyy-MM-dd HH:mm}'), '{title}', {color_argb}, '{place}','{etc}', {bAlarm}, {bDone}";
 
             db.SaveOnDB(contents_name, values);
         } // SaveOnDB

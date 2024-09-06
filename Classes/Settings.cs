@@ -1,12 +1,13 @@
-﻿using Croffle.Classes.MainAbstract;
-using Croffle.Classes.MainInterface;
-using Croffle.Classes.MainInterface.Implement;
+﻿using CROFFLE_WPF.Classes.MainAbstract;
+using CROFFLE_WPF.Classes.MainInterface;
+using CROFFLE_WPF.Classes.MainInterface.Implement;
 using CroffleDataManager.SQLiteDB;
+using Microsoft.Win32;
 using System;
 using System.Data;
 using System.Reflection;
 
-namespace Croffle.Classes
+namespace CROFFLE_WPF.Classes
 {
     internal enum ModeDES
     {
@@ -26,10 +27,12 @@ namespace Croffle.Classes
         ISetting _Setting = new _Setting() as ISetting;
         internal bool logged_in = false;
         private byte[] pkey = new byte[8];
-        private string waffleid, wafflepw;
+        private string waffleid = null, wafflepw = null;
         
         private string sAccount = Contents.Name(EContents.eAccount);
         private string sSetting = Contents.Name(EContents.eSetting);
+
+        internal string sno, sname;
 
         /// <summary>
         /// Initializing - Setting을 Load하고 Table확인.
@@ -43,6 +46,7 @@ namespace Croffle.Classes
 
         internal void Initialize()
         {
+            Console.WriteLine("[Settings] Initialize");
             db.LoadOnDB(sAccount, out DataTable table);
             var row_count = table.Rows.Count;
 
@@ -62,12 +66,14 @@ namespace Croffle.Classes
         /// <returns></returns>
         internal override int GenerateKey()
         {
+            Console.WriteLine("> [GenerateKey] Generating...");
             var result = _Setting.GeneratePKEY(out pkey);
             return result;
         } // GenerateKey
 
         internal void SetAccount(string ID, string PW)
         {
+            Console.WriteLine("[Settings] SetAccount");
             waffleid = ID;
             wafflepw = PW;
             GenerateKey();
@@ -75,6 +81,7 @@ namespace Croffle.Classes
 
         internal void GetAccount(out string userid, out string userpw)
         {
+            Console.WriteLine("[Settings] GetAccount");
             userid = waffleid;
             userpw = wafflepw;
         } // GetAccount
@@ -84,10 +91,9 @@ namespace Croffle.Classes
         /// </summary>
         internal override int SaveAccount()
         {
+            Console.WriteLine("[Settings] SaveAccount");
             _Setting.DES_((int)ModeDES.Encrypt, ref waffleid, ref wafflepw, ref pkey, out string en_id, out string en_pw);
-            db.SaveOnDB(sAccount, $@"'userid', '{en_id}'");
-            db.SaveOnDB(sAccount, $@"'userpw', '{en_pw}'");
-            db.SaveOnDB(sAccount, $@"'pkey', '{Convert.ToBase64String(pkey)}'");
+            db.SaveOnDB(sAccount, $@"0, '{en_id}', '{en_pw}', '{Convert.ToBase64String(pkey)}'");
             return 1;
         } // SaveAccount
 
@@ -96,12 +102,15 @@ namespace Croffle.Classes
         /// </summary>
         internal override int LoadAccount()
         {
-            db.LoadOnDB(sAccount, "0", out DataTable table);
+            Console.WriteLine("[Settings] LoadAccount from DB");
+            db.LoadOnDB(sAccount, out DataTable table);
+
+            if (table.Rows.Count == 0) return 0;
             string en_id = table.Rows[0]["userid"].ToString();
             string en_pw = table.Rows[0]["userpw"].ToString();
             pkey = Convert.FromBase64String(table.Rows[0]["pkey"].ToString());
 
-            logged_in = true;
+            _Setting.DES_((int)ModeDES.Decrypt, ref en_id, ref en_pw, ref pkey, out waffleid, out wafflepw);
 
             return 1;
         } // LoadAccount
@@ -119,8 +128,17 @@ namespace Croffle.Classes
         /// <returns></returns>
         internal override int LoadSetting()
         {
+            Console.WriteLine("[Settings] LoadSetting from DB");
+            DataTable table = null;
             var fields = typeof(ASettings).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            db.LoadOnDB(sSetting, out DataTable table);
+            try
+            {
+                db.LoadOnDB(sSetting, out table);
+            }
+            catch (NullReferenceException)
+            {
+                return 0;
+            }
 
             foreach (var field in fields)
             {
@@ -167,6 +185,7 @@ namespace Croffle.Classes
         /// <returns></returns>
         internal override int SaveSetting()
         {
+            Console.WriteLine("[Settings] SaveSetting to DB");
             var fields = typeof(ASettings).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             foreach (var field in fields)
             {
@@ -184,5 +203,16 @@ namespace Croffle.Classes
             }
             return 1;
         }
-    }
-}
+
+        internal void UpdatekAutoStart()
+        {
+            string regStartUpPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+
+            var key = Registry.CurrentUser.OpenSubKey(regStartUpPath, true);
+
+            if (auto_start) key.SetValue("Croffle", $@"{Environment.CurrentDirectory}\Croffle.exe");
+            else key.DeleteValue("Croffle", false);
+
+        } // ChangeAutoStart
+    } // Settings
+} // CROFFLE_WPF.Classes

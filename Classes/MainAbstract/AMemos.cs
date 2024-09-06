@@ -1,4 +1,4 @@
-﻿namespace Croffle.Classes.MainAbstract
+﻿namespace CROFFLE_WPF.Classes.MainAbstract
 {
     internal abstract class AMemos : ADailyProperty
     {

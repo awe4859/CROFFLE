@@ -1,15 +1,13 @@
-﻿using Croffle.Classes.MainAbstract;
+﻿using CROFFLE_WPF.Classes.MainAbstract;
 using CroffleDataManager.SQLiteDB;
 using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace Croffle.Classes
+namespace CROFFLE_WPF.Classes
 {
     internal class Schedules : ASchedules
     {
-        SQLiteDB db;
-
         /// <summary>
         /// Initializing
         /// </summary>
@@ -27,7 +25,7 @@ namespace Croffle.Classes
         {
             db = new SQLiteDB();
             contents_name = Contents.Name(EContents.eSchedule);
-            s
+
             LoadOnDB(contentsID);
         } // Schedules
 
@@ -68,6 +66,8 @@ namespace Croffle.Classes
             if(!parse) fail_list.Add($@"color: {values["color"].ToString()}");
             // place
             place = values["place"].ToString();
+            transp = values["transp"].ToString();
+            etc = values["etc"].ToString();
             // alarm
             parse = bool.TryParse(values["alarm"].ToString(), out bAlarm);
             if(!parse) fail_list.Add($@"alarm: {values["alarm"].ToString()}");
@@ -77,6 +77,9 @@ namespace Croffle.Classes
             // repeat
             parse = bool.TryParse(values["repeat"].ToString(), out bRepeat);
             if(!parse) fail_list.Add($@"repeat: {values["repeat"].ToString()}");
+            // all_day
+            parse = bool.TryParse(values["all_day"].ToString(), out bAllDay);
+            if(!parse) fail_list.Add($@"all_day: {values["all_day"].ToString()}");
             // canceled
             parse = bool.TryParse(values["canceled"].ToString(), out bCanceled);
             if(!parse) fail_list.Add($@"canceled: {values["canceled"].ToString()}");
@@ -101,8 +104,8 @@ namespace Croffle.Classes
         {
             if(contentsID == "" || contentsID == null) GenerateID();
             var value = $@"'{contentsID}', date('{whens:yyyy-MM-dd}'), datetime('{startTime:yyyy-MM-dd HH:mm}'), "
-                + $@"datetime('{endTime:yyyy-MM-dd HH:mm}'), datetime('{DateTime.Now: yyyy-MM-dd HH:mm}'), "
-                + $@"'{title}', {color_argb}, '{place}', {bAlarm}, {bDone}, {bRepeat}, {bCanceled}";
+                + $@"datetime('{endTime:yyyy-MM-dd HH:mm}'), datetime('{DateTime.Now:yyyy-MM-dd HH:mm}'), "
+                + $@"'{title}', {color_argb}, '{place}', '{transp}', '{etc}', {bAlarm}, {bDone}, {bRepeat}, {bAllDay}, {bCanceled}";
 
             db.SaveOnDB(contents_name, value);
         } // SaveOnDB

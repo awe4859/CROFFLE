@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Croffle.Classes.MainAbstract
+namespace CROFFLE_WPF.Classes.MainAbstract
 {
     internal abstract class ASchedules : ADailyProperty
     {
@@ -8,6 +8,8 @@ namespace Croffle.Classes.MainAbstract
      /// 해당 일정이 진행되는 장소
      /// </summary>
         internal string place = null;
+        internal string transp = null;
+        internal string etc = null;
 
         /// <summary>
         /// 일정 시작 시각
@@ -33,5 +35,6 @@ namespace Croffle.Classes.MainAbstract
         /// 반복, 취소나 연기
         /// </summary>
         internal bool bRepeat = false, bCanceled = false;
+        internal bool bAllDay = false;
     }
 }
