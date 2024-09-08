@@ -107,12 +107,12 @@ namespace CROFFLE_WPF.WPF_xamls.Controls
 
         private void Btn_Delete_MouseEnter(object sender, MouseEventArgs e)
         {
-            img_delete.Source = new ImageSourceConverter().ConvertFromString("../../Icon/trash-can-red.png") as ImageSource;
+            img_delete.Source = new ImageSourceConverter().ConvertFromString("Icon/trash-can-red.png") as ImageSource;
             img_delete.Opacity = 1;
         } // Btn_Delete_MouseEnter
         private void Btn_Delete_MouseLeave(object sender, MouseEventArgs e)
         {
-            img_delete.Source = new ImageSourceConverter().ConvertFromString("../../Icon/trash-can-solid.png") as ImageSource;
+            img_delete.Source = new ImageSourceConverter().ConvertFromString("Icon/trash-can-solid.png") as ImageSource;
             img_delete.Opacity = 0.5;
         } // Btn_Delete_MouseLeave
 

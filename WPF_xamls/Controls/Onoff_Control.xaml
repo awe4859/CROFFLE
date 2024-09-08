@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:CROFFLE_WPF.WPF_xamls.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="50">
-    <Grid>
-        <Grid MouseDown="MouseClick">
+    <Grid MouseDown="MouseClick">
+        <Grid>
             <Border x:Name="switch_bd" BorderBrush="black" BorderThickness="1" CornerRadius="10" Background="LightGray"/>
         </Grid>
         <Grid x:Name="changer_grid" Height="20" Width="20" HorizontalAlignment="Left" MouseDown="MouseClick">

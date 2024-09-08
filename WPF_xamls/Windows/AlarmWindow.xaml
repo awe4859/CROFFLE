@@ -26,17 +26,17 @@
             <Grid x:Name="grid_s_Icon" Grid.Column="1">
                 <Border Background="Red" BorderThickness="0" CornerRadius="10" Margin="5"/>
                 <Label Content="S" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
-                       FontSize="25" FontFamily="/Font/#KCC-Ganpan" Padding="0"/>
+                       FontSize="25" FontFamily="../../Font/#KCC-Ganpan" Padding="0"/>
             </Grid>
             <Grid x:Name="grid_t_Icon" Grid.Column="2">
                 <Border Background="LimeGreen" BorderThickness="0" CornerRadius="10" Margin="5"/>
                 <Label Content="T" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
-           FontSize="25" FontFamily="/Font/#KCC-Ganpan" Padding="0"/>
+           FontSize="25" FontFamily="../../Font/#KCC-Ganpan" Padding="0"/>
             </Grid>
             <Grid x:Name="grid_w_Icon" Grid.Column="3">
                 <Border Background="RoyalBlue" BorderThickness="0" CornerRadius="10" Margin="5"/>
                 <Label Content="W" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
-           FontSize="25" FontFamily="/Font/#KCC-Ganpan" Padding="0"/>
+           FontSize="25" FontFamily="../../Font/#KCC-Ganpan" Padding="0"/>
             </Grid>
             <Border x:Name="bd_close" Grid.Column="5" Background="Transparent" BorderThickness="0"/>
             <Grid x:Name="grid_close" Grid.Column="5">
@@ -52,14 +52,14 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Label x:Name="lb_title" Grid.Row="0" Content="title" HorizontalContentAlignment="Left"
-                   VerticalContentAlignment="Center" FontFamily="/Font/#KCC-Ganpan" Margin="15 0 0 0"
+                   VerticalContentAlignment="Center" FontFamily="../../Font/#KCC-Ganpan" Margin="15 0 0 0"
                    FontSize="20" Padding="0"/>
             <Label x:Name="lb_detail" Grid.Row="1" Content="details" HorizontalContentAlignment="Left"
-                   VerticalContentAlignment="Top" Margin="15 5 15 0" FontFamily="/Font/#Dongle" FontSize="30"
+                   VerticalContentAlignment="Top" Margin="15 5 15 0" FontFamily="../../Font/#Dongle" FontSize="30"
                    Padding="0"/>
         </Grid>
         <Border x:Name="bd_time" Grid.Row="2" BorderThickness="0" Background="White"/>
-        <Label Grid.Row="2" Content="시작시간 알림" FontFamily="/Font/#Dongle" FontSize="20" Padding="0"
+        <Label Grid.Row="2" Content="시작시간 알림" FontFamily="../../Font/#Dongle" FontSize="20" Padding="0"
                VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="15 0 15 0"/>
     </Grid>
     <Window.Resources>

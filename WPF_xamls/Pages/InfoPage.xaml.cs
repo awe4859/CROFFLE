@@ -7,7 +7,7 @@ namespace CROFFLE_WPF.WPF_xamls.Pages
     /// <summary>
     /// InfoPage.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class InfoPage : Page
+    public partial class InfoPage : SettingPages
     {
         public InfoPage()
         {
@@ -17,6 +17,11 @@ namespace CROFFLE_WPF.WPF_xamls.Pages
         private void RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+        }
+
+        public override void Save()
+        {
+            // Do nothing
         }
     }
 }

@@ -96,10 +96,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -147,6 +147,7 @@
       <DependentUpon>DailyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF_xamls\Pages\LoginPage.cs" />
+    <Compile Include="WPF_xamls\Pages\SettingPages.cs" />
     <Compile Include="WPF_xamls\Windows\AlarmWindow.xaml.cs">
       <DependentUpon>AlarmWindow.xaml</DependentUpon>
     </Compile>

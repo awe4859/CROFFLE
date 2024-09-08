@@ -45,12 +45,10 @@ namespace CROFFLE_WPF.WPF_xamls.Controls
             if (value)
             {
                 Move_off();
-                value = false;
             }
             else
             {
                 Move_on();
-                value = true;
             }
             RaiseEvent(new RoutedEventArgs(ValueChangedEvent));
         }

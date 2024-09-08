@@ -43,13 +43,13 @@
                     </Grid.ColumnDefinitions>
                     <Ellipse Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Icon/croffle.png"/>
+                            <ImageBrush ImageSource="../../Icon/croffle.png"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Grid>
 
                 <Grid x:Name="tb_Name" Grid.Column="1">
-                    <Label x:Name="tb_Name_lb" Content="WAFFLE 과업 정보" FontFamily="/Font/#KCC-Ganpan" FontSize="18" Foreground="White"
+                    <Label x:Name="tb_Name_lb" Content="WAFFLE 과업 정보" FontFamily="../../Font/#KCC-Ganpan" FontSize="18" Foreground="White"
    VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10 0 0 0"/>
                 </Grid>
             </Grid>
@@ -95,13 +95,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="/Icon/calendar_icon.png" Width=" 30" HorizontalAlignment="Right" Margin=" 20 0 0 0" />
+                <Image Grid.Column="0" Source="../../Icon/calendar_icon.png" Width=" 30" HorizontalAlignment="Right" Margin=" 20 0 0 0" />
             </Grid>
 
             <Grid x:Name="grid_deadline" Grid.Row="1" Margin="15 0">
                 <Border x:Name="bd_deadline" BorderThickness="1" CornerRadius="7" BorderBrush="#FF707070"/>
                 <Label x:Name="lb_deadline" Content="기한: yyyy년 MM 월 dd일 HH:mm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-                            BorderBrush="Transparent" Background="Transparent" Margin="10 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="13"/>
+                            BorderBrush="Transparent" Background="Transparent" Margin="10 0 0 0" FontFamily="../../Font/#KCC-Ganpan" FontSize="13"/>
             </Grid>
 
         </Grid>
@@ -114,8 +114,8 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="6*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="타입:" FontFamily="/Font/#KCC-Ganpan" FontSize="15" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label x:Name="lb_Type" Content="과제" FontFamily="/Font/#KCC-Ganpan" FontSize="15" Grid.Column="2" HorizontalAlignment="Left"
+            <Label Content="타입:" FontFamily="../../Font/#KCC-Ganpan" FontSize="15" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label x:Name="lb_Type" Content="과제" FontFamily="../../Font/#KCC-Ganpan" FontSize="15" Grid.Column="2" HorizontalAlignment="Left"
                    VerticalAlignment="Center" Foreground="RoyalBlue"/>
         </Grid>
 
@@ -142,9 +142,9 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="상태:" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="/Font/#KCC-Ganpan"/>
+                    <Label Content="상태:" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="../../Font/#KCC-Ganpan"/>
                     <Label x:Name="lb_state" Grid.Column="1" Content="미완료" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" 
-                          FontFamily="/Font/#KCC-Ganpan" Foreground="#FFFF4919"/>
+                          FontFamily="../../Font/#KCC-Ganpan" Foreground="#FFFF4919"/>
                 </Grid>
             </Grid>
 
@@ -172,7 +172,7 @@
                     <!--OK Button-->
                     <Border x:Name="bd_OK" Grid.Column="3" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
                     <Label x:Name="lb_OK" Grid.Column="3" Background="Transparent" Content="확인" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                 Height="30" Width="60" Foreground="DimGray" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Padding="0"/>
+                 Height="30" Width="60" Foreground="DimGray" FontFamily="../../Font/#KCC-Ganpan" FontSize="12" Padding="0"/>
                     <Button x:Name="btn_OK" Grid.Column="3" Height="30" Width="60" Background="Transparent" BorderBrush="{x:Null}"
                 IsDefault="True" Click="MouseClick_Save"/>
                     <!--OK Button-->

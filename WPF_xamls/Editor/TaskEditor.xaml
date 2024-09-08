@@ -43,13 +43,13 @@
                     </Grid.ColumnDefinitions>
                     <Ellipse Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Icon/croffle.png"/>
+                            <ImageBrush ImageSource="../../Icon/croffle.png"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Grid>
 
                 <Grid x:Name="tb_Name" Grid.Column="1">
-                    <Label x:Name="tb_Name_lb" Content="편집기" FontFamily="/Font/#KCC-Ganpan" FontSize="18" Foreground="White"
+                    <Label x:Name="tb_Name_lb" Content="편집기" FontFamily="../../Font/#KCC-Ganpan" FontSize="18" Foreground="White"
    VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10 0 0 0"/>
                 </Grid>
             </Grid>
@@ -83,7 +83,7 @@ MouseEnter="MouseEnter_Close" MouseLeave="MouseLeave_Close" Click="MouseClick_Cl
 
             <!--Delete Button-->
             <Grid x:Name="DeleteIcon" Grid.Column="1">
-                <Image x:Name="img_delete" Source="/Icon/trash-can-solid.png" Opacity="0.5" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image x:Name="img_delete" Source="../../Icon/trash-can-solid.png" Opacity="0.5" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button x:Name="Delete_Btn" Width="25" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Background="Transparent" BorderThickness="0" MouseEnter="Btn_Delete_MouseEnter" MouseLeave="Btn_Delete_MouseLeave"
                 Click="Btn_Delete_Click"/>
@@ -105,13 +105,13 @@ MouseEnter="MouseEnter_Close" MouseLeave="MouseLeave_Close" Click="MouseClick_Cl
                     <ColumnDefinition/>
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="/Icon/calendar_icon.png" Width=" 30" HorizontalAlignment="Right" Margin=" 20 0 0 0" />
+                <Image Grid.Column="0" Source="../../Icon/calendar_icon.png" Width=" 30" HorizontalAlignment="Right" Margin=" 20 0 0 0" />
             </Grid>
 
             <Grid x:Name="grid_deadline" Grid.Row="1" Margin="15 0">
                 <Border x:Name="bd_deadline" BorderThickness="1" CornerRadius="7" BorderBrush="#FF707070"/>
                 <Label x:Name="lb_deadline" Content="기한: yyyy년 MM 월 dd일 HH:mm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-                            BorderBrush="Transparent" Background="Transparent" Margin="10 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="13"/>
+                            BorderBrush="Transparent" Background="Transparent" Margin="10 0 0 0" FontFamily="../../Font/#KCC-Ganpan" FontSize="13"/>
                 <Button x:Name="btn_deadline" Background="Transparent" BorderBrush="Transparent" Click="Btn_Deadline_Click" />
             </Grid>
 
@@ -153,9 +153,9 @@ MouseEnter="MouseEnter_Close" MouseLeave="MouseLeave_Close" Click="MouseClick_Cl
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="알림" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="/Font/#KCC-Ganpan"/>
+                    <Label Content="알림" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="../../Font/#KCC-Ganpan"/>
                     <local1:Onoff_Control x:Name="sw_alarm" Grid.Column="1" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" ValueChanged="Sw_ValueChanged"/>
-                    <Label Content="완료" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="/Font/#KCC-Ganpan"/>
+                    <Label Content="완료" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="../../Font/#KCC-Ganpan"/>
                     <local1:Onoff_Control x:Name="sw_done" Grid.Column="3" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" ValueChanged="Sw_ValueChanged"/>
                 </Grid>
             </Grid>
@@ -215,7 +215,7 @@ MouseEnter="MouseEnter_Close" MouseLeave="MouseLeave_Close" Click="MouseClick_Cl
                     <!--OK Button-->
                     <Border x:Name="bd_OK" Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
                     <Label x:Name="lb_OK" Grid.Column="1" Background="Transparent" Content="저장" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                 Height="30" Width="60" Foreground="DimGray" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Padding="0"/>
+                 Height="30" Width="60" Foreground="DimGray" FontFamily="../../Font/#KCC-Ganpan" FontSize="12" Padding="0"/>
                     <Button x:Name="btn_OK" Grid.Column="1" Height="30" Width="60" Background="Transparent" BorderBrush="{x:Null}"
                 IsDefault="True" Click="MouseClick_Save"/>
                     <!--OK Button-->
@@ -223,7 +223,7 @@ MouseEnter="MouseEnter_Close" MouseLeave="MouseLeave_Close" Click="MouseClick_Cl
                     <!--Cancel Button-->
                     <Border x:Name="bd_Cancel" Grid.Column="3" Background="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="60" CornerRadius="4"/>
                     <Label x:Name="lb_Cancel" Grid.Column="3" Background="Transparent" Content="취소" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                 Height="30" Width="60" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Padding="0"/>
+                 Height="30" Width="60" FontFamily="../../Font/#KCC-Ganpan" FontSize="12" Padding="0"/>
                     <Button x:Name="btn_CanCel" Grid.Column="3" Height="30" Width="60" Background="Transparent" BorderBrush="{x:Null}"
                 IsCancel="True" Click="MouseClick_Close"/>
                     <!--Cancel Button-->

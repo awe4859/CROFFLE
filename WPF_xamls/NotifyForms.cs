@@ -46,7 +46,7 @@ namespace CROFFLE_WPF.WPF_xamls
         private void SetupNotifyIcon()
         {
             notifyIcon = new NotifyIcon();
-            notifyIcon.Icon = new Icon("../../Icon/croffle.ico");
+            notifyIcon.Icon = new Icon("Icon/croffle.ico");
             notifyIcon.Visible = true;
             notifyIcon.Text = "Croffle";
 

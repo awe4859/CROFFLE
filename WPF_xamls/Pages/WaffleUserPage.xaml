@@ -31,7 +31,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="19*"/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="lb_page_title" Grid.Column="1" Content="WAFFLE 로그인 정보" FontFamily="/Font/#KCC-Ganpan" FontSize="20"
+                <Label x:Name="lb_page_title" Grid.Column="1" Content="WAFFLE 로그인 정보" FontFamily="../../Font/#KCC-Ganpan" FontSize="20"
                    VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
             <Grid Grid.Row="1" x:Name="grid_user_info">
@@ -47,11 +47,11 @@
                         <RowDefinition Height="3*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="1" x:Name="icon_user" Source="/Icon/user_icon.png"/>
+                    <Image Grid.Row="1" x:Name="icon_user" Source="../../Icon/user_icon.png"/>
                 </Grid>
 
                 <Grid Grid.Column="2">
-                    <Label x:Name="lb_welcome" Content="00000000 OOO님 안녕하세요!" FontFamily="/Font/#KCC-Ganpan" FontSize="15"
+                    <Label x:Name="lb_welcome" Content="00000000 OOO님 안녕하세요!" FontFamily="../../Font/#KCC-Ganpan" FontSize="15"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -65,14 +65,14 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" x:Name="lb_hl_intra" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0">
                     <Hyperlink NavigateUri="https://intra.wku.ac.kr/" RequestNavigate="Hyperlink_Request" TextDecorations="None">
-                        <Label Content="웹정보서비스 바로가기" Foreground="Blue" FontStyle="Italic" FontFamily="/Font/#Dongle"
+                        <Label Content="웹정보서비스 바로가기" Foreground="Blue" FontStyle="Italic" FontFamily="../../Font/#Dongle"
                                FontSize="20" Padding="0"/>
                     </Hyperlink>
                 </Label>
 
                 <Border Grid.Column="2" Background="#FFC0392B" BorderBrush="Black" BorderThickness="1" CornerRadius="10"/>
                 <Grid x:Name="grid_btn_logout" Grid.Column="2">
-                    <Label x:Name="lb_logout" Content="로그아웃" FontFamily="/Font/#KCC-Ganpan" Foreground="White" FontSize="12"
+                    <Label x:Name="lb_logout" Content="로그아웃" FontFamily="../../Font/#KCC-Ganpan" Foreground="White" FontSize="12"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <Button x:Name="btn_logout" BorderThickness="0" Background="Transparent" Click="Logout_btn_Click"/>
                 </Grid>

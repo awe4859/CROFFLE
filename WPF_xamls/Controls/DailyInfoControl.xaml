@@ -26,7 +26,7 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Image x:Name="img_task" Source="/Icon/file-lines-regular.png" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image x:Name="img_task" Source="../../Icon/file-lines-regular.png" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
 
             <Grid Grid.Column="3">
@@ -37,19 +37,19 @@
                     <RowDefinition Height="7"/>
                 </Grid.RowDefinitions>
                 <!--컨텐츠제목-->
-                <Label x:Name="lb_title" Grid.Row="1" Foreground="White" Content="Title" FontFamily="/Font/#KCC-Ganpan" FontSize="15" Padding="0"/>
+                <Label x:Name="lb_title" Grid.Row="1" Foreground="White" Content="Title" FontFamily="../../Font/#KCC-Ganpan" FontSize="15" Padding="0"/>
                 <!--시간-->
-                <Label x:Name="lb_date" Grid.Row="2" Foreground="White" Content="date" FontSize="15" FontFamily="/Font/#Dongle" Padding="0"
+                <Label x:Name="lb_date" Grid.Row="2" Foreground="White" Content="date" FontSize="15" FontFamily="../../Font/#Dongle" Padding="0"
                        VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
             <!--온오프버튼-->
             <Grid Grid.Column="4">
-                <Image x:Name="img_done" Source="/Icon/Check_Icon.png" Visibility="Hidden"/>
+                <Image x:Name="img_done" Source="../../Icon/Check_Icon.png" Visibility="Hidden"/>
                 <local:Onoff_Control x:Name="sw_alarm" Width="40" Height="20" ValueChanged="Click_SW_Changed"/>
             </Grid>
             <!--삭제버튼-->
             <Grid Grid.Column="6" Height="30">
-                <Image x:Name="img_delete" Source="/Icon/trash-can-solid.png" Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image x:Name="img_delete" Source="../../Icon/trash-can-solid.png" Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button x:Name="btn_delete" Background="Transparent" BorderThickness="0" MouseEnter="Btn_Delete_MouseEnter" MouseLeave="Btn_Delete_MouseLeave"
                         Click="Btn_Delete_Click"/>
             </Grid>

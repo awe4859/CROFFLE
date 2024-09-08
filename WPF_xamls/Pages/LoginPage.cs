@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace CROFFLE_WPF.WPF_xamls.Pages
 {
-    public class LoginPage : Page
+    public class LoginPage : SettingPages
     {
         public static RoutedEvent LoggedChangeEvent = EventManager.RegisterRoutedEvent(
             "LoggedChangeEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(WaffleLoginPage));
@@ -18,6 +12,10 @@ namespace CROFFLE_WPF.WPF_xamls.Pages
             remove { RemoveHandler(LoggedChangeEvent, value); }
         }
         public LoginPage() : base()
+        {
+        }
+
+        public override void Save()
         {
         }
     }

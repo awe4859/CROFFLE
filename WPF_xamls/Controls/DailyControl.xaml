@@ -24,9 +24,9 @@
             </Grid.RowDefinitions>
 
             <Label x:Name="dayNum_lb" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="10"/>
+                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="../../Font/#KCC-Ganpan" FontSize="10"/>
             <Label x:Name="dailyInfo_lb" Grid.Row="1" Content="~~의 날" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="/Font/#KCC-Ganpan" FontSize="10"/>
+                   Margin="0 0 0 0" Padding="0 0 0 0" FontFamily="../../Font/#KCC-Ganpan" FontSize="10"/>
         </Grid>
     
             <Grid x:Name="contents_Grid" Grid.Row="1" Margin="0.5 0 0.5 0.5">
@@ -44,7 +44,7 @@
                 <Grid x:Name="content1" Grid.Row="1" Visibility="Visible">
                     <Border x:Name="content1_bd" BorderBrush="black" BorderThickness="1" CornerRadius="7" Padding="0" Margin="-0.5 0 -0.5 0"/>
                     <Label x:Name="content1_lb" Content="Content Name" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Margin="0" Padding="0" FontFamily="/Font/#KCC-Ganpan" FontSize="10"/>
+                   Margin="0" Padding="0" FontFamily="../../Font/#KCC-Ganpan" FontSize="10"/>
                 </Grid>
 
 
@@ -53,7 +53,7 @@
                     <Border x:Name="content2_bd" BorderBrush="black" BorderThickness="1" CornerRadius="7" Padding="0" Margin="-0.5 0 -0.5 0"/>
                     <Label x:Name="content2_lb" Content="Content Name" HorizontalAlignment="Center" VerticalAlignment="Center"
                     Margin="0" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    FontFamily="/Font/#KCC-Ganpan" FontSize="10"/>
+                    FontFamily="../../Font/#KCC-Ganpan" FontSize="10"/>
                 </Grid>
 
                 <!--3번째 스케줄 컨텐츠-->
@@ -61,7 +61,7 @@
                     <Border x:Name="content3_bd" BorderBrush="black" BorderThickness="1" CornerRadius="7" Background="LightGray" Padding="0" Margin="-0.5 0 -0.5 0"/>
                     <Label x:Name="content3_lb" Content="외 0개의 일정 있음" HorizontalAlignment="Center" VerticalAlignment="Center"
                     Margin="0 -1 0 0" Padding="0 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    FontFamily="/Font/#KCC-Ganpan" FontSize="12"/>
+                    FontFamily="../../Font/#KCC-Ganpan" FontSize="12"/>
                 </Grid>
 
             </Grid>

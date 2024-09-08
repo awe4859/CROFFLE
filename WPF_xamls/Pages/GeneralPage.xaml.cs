@@ -8,10 +8,19 @@ namespace CROFFLE_WPF.WPF_xamls.Pages
     /// <summary>
     /// GeneralPage.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class GeneralPage : Page
+    public partial class GeneralPage : SettingPages
     {
+        public static RoutedEvent SettingGeneralChangedEvent = EventManager.RegisterRoutedEvent(
+            "SettingGeneralChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(GeneralPage));
+        public event RoutedEventHandler SettingGeneralChanged
+            {
+            add { AddHandler(SettingGeneralChangedEvent, value); }
+            remove { RemoveHandler(SettingGeneralChangedEvent, value); }
+        }
 
         private Settings _setting;
+
+        private bool _isChanged = false;
 
         internal GeneralPage(ref Settings setting)
         {
@@ -31,7 +40,7 @@ namespace CROFFLE_WPF.WPF_xamls.Pages
             done_doubleC_switch.state = _setting.done_doubleC;
         } // GeneralPage_Load
 
-        internal void Save()
+        public override void Save()
         {
             _setting.auto_start = auto_start_switch.state;
             _setting.system_tray = system_tray_switch.state;
@@ -41,26 +50,14 @@ namespace CROFFLE_WPF.WPF_xamls.Pages
             _setting.done_doubleC = done_doubleC_switch.state;
 
             _setting.SaveSetting();
+
+            _isChanged = false;
         } // Save
-
-
-        // 값 변경 여부 확인
-        // 값이 바뀌면 true 반환
-        internal bool Changed()
-        {
-            if (_setting.auto_start != auto_start_switch.state) return true;
-            else if (_setting.system_tray != system_tray_switch.state) return true;
-            else if (_setting.show_cancel != show_cancel_switch.state) return true;
-            else if (_setting.show_done != show_done_switch.state) return true;
-            else if (_setting.show_week != show_week_switch.state) return true;
-            else if (_setting.done_doubleC != done_doubleC_switch.state) return true;
-            else return false;
-        } // Changed
 
        /*저장안하고 메뉴 탭 변경 시 저장 여부를 체크*/
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            if (Changed())
+            if (_isChanged)
             {
                 if (new OkCancel_DIalog("주의", "저장하지 않았습니다.\n저장하시겠습니까?").ShowDialog() == true)
                 {

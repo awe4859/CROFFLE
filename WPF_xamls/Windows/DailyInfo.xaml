@@ -36,7 +36,7 @@
                     </Grid.ColumnDefinitions>
                     <Ellipse Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Icon/croffle.png"/>
+                            <ImageBrush ImageSource="../../Icon/croffle.png"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Grid>
@@ -46,7 +46,7 @@
                         <ColumnDefinition Width="263*"/>
                         <ColumnDefinition Width="97*"/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="tb_Name_lb" Content="일일 상세" FontFamily="/Font/#KCC-Ganpan" FontSize="18" Foreground="White"
+                    <Label x:Name="tb_Name_lb" Content="일일 상세" FontFamily="../../Font/#KCC-Ganpan" FontSize="18" Foreground="White"
            VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10,0,0,0" Grid.ColumnSpan="2"/>
                 </Grid>
             </Grid>
@@ -96,7 +96,7 @@
                             <Grid>
                                 <Border x:Name="bd_onSchedule" CornerRadius="5" Background="#FFE74C3C" Margin="1"/>
                                 <Label x:Name="lb_onSchedule" Content="일정" Foreground="White" FontSize="20" FontWeight="Bold"
-                                       FontFamily="/Font/#Dongle" Padding="0"
+                                       FontFamily="../../Font/#Dongle" Padding="0"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <Button x:Name="btn_onSchedule" BorderBrush="Transparent" Background="Transparent" Foreground="White" Margin="1"
                                         Click="OnOff_Contents_Btn"/>
@@ -106,7 +106,7 @@
                         <Grid x:Name="grid_onTask" Grid.Row="1"  Grid.Column="1">
                             <Grid Margin="1">
                                 <Border x:Name="bd_onTask" Background="#FF3CB1FF" CornerRadius="4"/>
-                                <Label x:Name="lb_onTask" Content="과제" Foreground="White" FontSize="20" FontWeight="Bold" FontFamily="/Font/#Dongle" Padding="2"
+                                <Label x:Name="lb_onTask" Content="과제" Foreground="White" FontSize="20" FontWeight="Bold" FontFamily="../../Font/#Dongle" Padding="2"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <Button x:Name="btn_onTask" BorderBrush="Transparent" Foreground="White" Background="Transparent" Margin="1"
                                         Click="OnOff_Contents_Btn"/>
@@ -116,7 +116,7 @@
                         <Grid x:Name="grid_onWaffle" Grid.Row="2"  Grid.Column="1">
                             <Grid Margin="1">
                                 <Border x:Name="bd_onWaffle" CornerRadius="4" Background="#FFF1C40F"/>
-                                <Label x:Name="lb_onWaffle" Content="와플" Foreground="White" FontSize="20" FontWeight="Bold" FontFamily="/Font/#Dongle" Padding="0"
+                                <Label x:Name="lb_onWaffle" Content="와플" Foreground="White" FontSize="20" FontWeight="Bold" FontFamily="../../Font/#Dongle" Padding="0"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <Button x:Name="btn_onWaffle" BorderBrush="Transparent" Background="Transparent" Foreground="White" Margin="1"
                                         Click="OnOff_Contents_Btn"/>
@@ -133,11 +133,11 @@
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Label Name="lb_title" FontSize="27" FontWeight="Bold" FontFamily="/Font/#KCC-Ganpan" Content="yyyy.MM.dd (요일)" Padding="0"/>
+                                <Label Name="lb_title" FontSize="27" FontWeight="Bold" FontFamily="../../Font/#KCC-Ganpan" Content="yyyy.MM.dd (요일)" Padding="0"/>
                             </Grid>
                             <Grid Grid.Row="1" >
                                 <StackPanel x:Name="sp_annv" HorizontalAlignment="Center"/>
-                                <!--Label Name="lb_annv" Content="특일정보"  Foreground="Black" FontSize="20" FontWeight="Bold" FontFamily="/Font/#Dongle" Padding="0"/-->
+                                <!--Label Name="lb_annv" Content="특일정보"  Foreground="Black" FontSize="20" FontWeight="Bold" FontFamily="../../Font/#Dongle" Padding="0"/-->
                             </Grid>
                         </Grid>
                     </Grid>
@@ -155,11 +155,11 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Border x:Name="bd_complete" Grid.Column="0" Background="SeaGreen" CornerRadius="10 10 0 0"/>
-                    <Label x:Name="lb_complete" Grid.Column="0" Content="완료된 일정" FontFamily="/Font/#Dongle" FontSize="20" Padding="0" Margin="0 -5 0 0"
+                    <Label x:Name="lb_complete" Grid.Column="0" Content="완료된 일정" FontFamily="../../Font/#Dongle" FontSize="20" Padding="0" Margin="0 -5 0 0"
                            Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                     <Border x:Name="bd_incomplete" Grid.Column="1" Background="Tomato" CornerRadius="10 10 0 0"/>
-                    <Label x:Name="lb_incomplete" Grid.Column="1" Content="미완료된 일정" FontFamily="/Font/#Dongle" FontSize="20" Padding="0" Margin="0 -5 0 0"
+                    <Label x:Name="lb_incomplete" Grid.Column="1" Content="미완료된 일정" FontFamily="../../Font/#Dongle" FontSize="20" Padding="0" Margin="0 -5 0 0"
                            Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
 

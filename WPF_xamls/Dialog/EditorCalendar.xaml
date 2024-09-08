@@ -36,13 +36,13 @@
                     </Grid.ColumnDefinitions>
                     <Ellipse Grid.Column="1" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Icon/croffle.png"/>
+                            <ImageBrush ImageSource="../../Icon/croffle.png"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Grid>
 
                 <Grid x:Name="tb_Name" Grid.Column="1">
-                    <Label x:Name="tb_Name_lb" Content="" FontFamily="/Font/#KCC-Ganpan" FontSize="12" Foreground="Black"
+                    <Label x:Name="tb_Name_lb" Content="" FontFamily="../../Font/#KCC-Ganpan" FontSize="12" Foreground="Black"
                              VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10 0 0 0"/>
                 </Grid>
             </Grid>
@@ -78,7 +78,7 @@
                 <ComboBox x:Name="minutesComboBox" Height="25" Width="60"/>
             </Grid>
             <Border x:Name="Ok_bd" Grid.Column="3" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="25" Width="50" CornerRadius="4"/>
-            <Label Grid.Column="3" Content="확인" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Font/#KCC-Ganpan"
+            <Label Grid.Column="3" Content="확인" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="../../Font/#KCC-Ganpan"
                    Foreground="White" FontSize="12"/>
             <Button Grid.Column="3" Height="30" Width="60" Background="Transparent"  BorderBrush="{x:Null}" Click="Button_Click"
                     IsDefault="True"/>

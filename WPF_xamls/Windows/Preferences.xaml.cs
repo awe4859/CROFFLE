@@ -24,16 +24,20 @@ namespace CROFFLE_WPF.WPF_xamls.Windows
 
         private Settings setting;
 
-        private GeneralPage generalPage;
-        private AlarmPage alarmPage;
-        private LoginPage wafflePage;
-        private InfoPage infoPage;
+        //private GeneralPage generalPage;
+        //private AlarmPage alarmPage;
+        //private LoginPage wafflePage;
+        //private InfoPage infoPage;
+        private SettingPages settingPages;
         
         // 탭메뉴 색상값
         private SolidColorBrush activateColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3CB1FF"));
         private SolidColorBrush activateText = Brushes.White;
         private SolidColorBrush standardColor = Brushes.LightGray;
         private SolidColorBrush standardText = Brushes.Black;
+
+
+        private bool isChanged = false;
 
         internal Preferences(Settings settings)
         {
@@ -44,49 +48,55 @@ namespace CROFFLE_WPF.WPF_xamls.Windows
             setting.LoadAccount();
             setting.LoadSetting();
 
-            generalPage = new GeneralPage(ref setting);
-            alarmPage = new AlarmPage(ref setting);
-            infoPage = new InfoPage();
-            mainFrame.Content = generalPage;
-            Check_Login();
+            //generalPage = new GeneralPage(ref setting);
+            //alarmPage = new AlarmPage(ref setting);
+            //infoPage = new InfoPage();
+            //mainFrame.Content = generalPage;
+            settingPages = new GeneralPage(ref setting);
+            mainFrame.Content = settingPages;
         }
 
 
         // 저장 유무 확인
         internal void CheckSave()
         {
+            if (settingPages.GetType() == typeof(LoginPage) || settingPages.GetType() == typeof(InfoPage))
+            {
+                return;
+            }
             var dialog = new OkCancel_DIalog("알림", "저장하시겠습니까?");
             dialog.Owner = this;
 
             //세팅 저장
             if (dialog.ShowDialog() == true)
             {
-                generalPage.Save();
+                settingPages.Save();
                 new ConfirmDialog("알림", "저장되었습니다.") { Owner = this }.ShowDialog();
             }
         }
-
 
         // 클릭 이벤트
 
         private void General_btn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Content = generalPage = new GeneralPage(ref setting);
+            settingPages = new GeneralPage(ref setting);
+            mainFrame.Content = settingPages;
             StandardButton();
             HighLightButton(general_bd, general_lb);
         }
 
-
         private void Alarm_btn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Content = alarmPage;
+            settingPages = new AlarmPage(ref setting);
+            mainFrame.Content = settingPages;
             StandardButton();
             HighLightButton(alarm_bd, alarm_lb);
         }
 
         private void Waffle_btn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Content = wafflePage;
+            Check_Login();
+            mainFrame.Content = settingPages;
             StandardButton();
             HighLightButton(waffle_bd,waffle_lb);
         }
@@ -94,7 +104,8 @@ namespace CROFFLE_WPF.WPF_xamls.Windows
         private void Info_btn_Click(object sender, RoutedEventArgs e)
         {
             //test
-            mainFrame.Content = infoPage;
+            settingPages = new InfoPage();
+            mainFrame.Content = settingPages;
             StandardButton();
             HighLightButton(info_bd, info_lb);
         }
@@ -103,29 +114,21 @@ namespace CROFFLE_WPF.WPF_xamls.Windows
 
         private void Cancel_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (generalPage.Changed())
-            {
-                if (MessageBox.Show("저장되지 않았습니다. 저장 하시겠습니까?", "알림", MessageBoxButton.OKCancel, MessageBoxImage.Information) == MessageBoxResult.OK)
-                {
-                    generalPage.Save();
-                    this.Close();
-                }
-                else this.Close();
-            }
-            else this.Close();
+            mainFrame.Content = null;
+            Close();
         }
 
         private void Check_Login()
         {
             if (setting.logged_in)
             {
-                wafflePage = new WaffleUserPage(setting);
+                settingPages = new WaffleUserPage(setting);
             }
             else
             {
-                wafflePage = new WaffleLoginPage(ref setting);
+                settingPages = new WaffleLoginPage(ref setting);
             }
-            wafflePage.LoggedChange += WafflePage_LoggedChange;
+            ((LoginPage)settingPages).LoggedChange += WafflePage_LoggedChange;
         }
 
         private void WafflePage_LoggedChange(object sender, RoutedEventArgs e)
@@ -134,15 +137,6 @@ namespace CROFFLE_WPF.WPF_xamls.Windows
             RaiseEvent(new RoutedEventArgs(SettingChanged));
             Close();
         }
-
-        private void Save_Setting_Click(object sender, RoutedEventArgs e)
-        {
-            Visibility = Visibility.Collapsed;
-            RaiseEvent(new RoutedEventArgs(SettingChanged));
-            CheckSave();
-            Close();
-        }
-
 
         private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -172,7 +166,9 @@ namespace CROFFLE_WPF.WPF_xamls.Windows
          /*test*/
         private void Window_Closed(object sender, EventArgs e)
         {
-            /*generalPage.NotifyClose();*/
+            Visibility = Visibility.Collapsed;
+            RaiseEvent(new RoutedEventArgs(SettingChanged));
+            Close();
         }
 
 
@@ -204,12 +200,8 @@ namespace CROFFLE_WPF.WPF_xamls.Windows
         #region Footer
         private void MouseClick_Save(object sender, RoutedEventArgs e)
         {
-            if (true) return;
-
-            //RaiseEvent(new RoutedEventArgs(AskUpdate));
-
-            //Close();
-        } // MouseClick_Save
+            settingPages.Save();
+        }
         #endregion
     }
 }

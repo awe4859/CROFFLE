@@ -79,7 +79,7 @@ namespace CROFFLE_WPF.WPF_xamls.Windows
             }
             foreach (DataRow info in dailyInfo.Rows)
             {
-                //Label Name="lb_annv" Foreground="Black" FontSize="20" FontWeight="Bold" FontFamily="/Font/#Dongle" Padding="0"
+                //Label Name="lb_annv" Foreground="Black" FontSize="20" FontWeight="Bold" FontFamily="../../Font/#Dongle" Padding="0"
                 var label = new Label();
 
                 label.Content = info["dateName"].ToString();
