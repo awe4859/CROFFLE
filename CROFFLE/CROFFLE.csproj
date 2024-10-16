@@ -1,0 +1,102 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <Authors>$(AssemblyName) Dev.</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Font\AgaveNerdFont-Bold.ttf" />
+    <None Remove="Font\AgaveNerdFont-Regular.ttf" />
+    <None Remove="Font\AgaveNerdFontMono-Bold.ttf" />
+    <None Remove="Font\AgaveNerdFontMono-Regular.ttf" />
+    <None Remove="Font\AgaveNerdFontPropo-Bold.ttf" />
+    <None Remove="Font\AgaveNerdFontPropo-Regular.ttf" />
+    <None Remove="Font\Dongle-Bold.ttf" />
+    <None Remove="Font\Dongle-Light.ttf" />
+    <None Remove="Font\Dongle-Regular.ttf" />
+    <None Remove="Font\KCC-Ganpan.otf" />
+    <None Remove="Font\KCC-Ganpan.ttf" />
+    <None Remove="Font\LeagueSpartan-Black.ttf" />
+    <None Remove="Font\LeagueSpartan-Bold.ttf" />
+    <None Remove="Font\LeagueSpartan-ExtraBold.ttf" />
+    <None Remove="Font\LeagueSpartan-ExtraLight.ttf" />
+    <None Remove="Font\LeagueSpartan-Light.ttf" />
+    <None Remove="Font\LeagueSpartan-Medium.ttf" />
+    <None Remove="Font\LeagueSpartan-Regular.ttf" />
+    <None Remove="Font\LeagueSpartan-SemiBold.ttf" />
+    <None Remove="Font\LeagueSpartan-Thin.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Font\AgaveNerdFont-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\AgaveNerdFont-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\AgaveNerdFontMono-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\AgaveNerdFontMono-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\AgaveNerdFontPropo-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\AgaveNerdFontPropo-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\Dongle-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\Dongle-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\Dongle-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\KCC-Ganpan.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\KCC-Ganpan.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-ExtraBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Font\LeagueSpartan-Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

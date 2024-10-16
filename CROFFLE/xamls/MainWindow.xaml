@@ -1,0 +1,19 @@
+﻿<Window x:Class="CROFFLE.xamls.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CROFFLE.xamls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="SingleBorderWindow" AllowsTransparency="False" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <local:TitleBar Title="CROFFLE"  BackColor="#ffd8a3" ForeColor="Gray" TitleFontSize="15" TitleHeight="30"
+                        TitleFontFamily="pack://application:,,,/Font/KCC-Ganpan.ttf#KCC-Ganpan"/>
+    </Grid>
+</Window>

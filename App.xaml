@@ -1,9 +1,0 @@
-﻿<Application x:Class="CROFFLE_WPF.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CROFFLE_WPF"
-             StartupUri="WPF_xamls/MainGround.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
-</Application>

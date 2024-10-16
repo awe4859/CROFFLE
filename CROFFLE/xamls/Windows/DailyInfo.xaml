@@ -1,0 +1,124 @@
+﻿<Window x:Class="CROFFLE.xamls.Windows.DailyInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:root="clr-namespace:CROFFLE.xamls"
+        xmlns:local="clr-namespace:CROFFLE.xamls.Windows"
+        xmlns:control="clr-namespace:CROFFLE.xamls.Controls"
+        mc:Ignorable="d"
+        Title="DailyInfo" Height="450" Width="800" Background="White"
+        MinWidth="800" MinHeight="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- TitleBar -->
+        <root:TitleBar Title="Daily Info" BackColor="#ffd8a3" ForeColor="Gray" TitleFontSize="15" TitleHeight="30"
+                            TitleFontFamily="pack://application:,,,/Font/KCC-Ganpan.ttf#KCC-Ganpan"/>
+        <!--TitleBar-->
+        <!-- Content -->
+        <Grid x:Name="grid_content_area" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <!--Date Area-->
+            <Border x:Name="bd_date_area" Grid.Row="0" Background="#ffd8a3" BorderBrush="Transparent"/>
+            <Grid x:Name="grid_date_area" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <!--Swith Area-->
+                <Grid x:Name="grid_sw_area" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <!--Schedule Button-->
+                    <Grid Grid.Row="0">
+                        <control:RoundButton x:Name="btn_Schedule" ButtonText="일정" ButtonBorderBrush="Transparent"
+                                             ButtonForeground="Black" ButtonFontSize="20" ButtonColor="#FF5757"
+                                             ButtonFontFamily="pack://application:,,,/Font/KCC-Ganpan.ttf#KCC-Ganpan"
+                                             ButtonCornerRadius="15" Margin="10 5 10 2.5"/>
+                    </Grid>
+                    <!--Schedule Button-->
+                    <!--Task Button-->
+                    <Grid Grid.Row="1">
+                        <control:RoundButton x:Name="btn_Task" ButtonText="과업" ButtonBorderBrush="Transparent"
+                                             ButtonForeground="Black" ButtonFontSize="20" ButtonColor="#0CC0DF" 
+                                             ButtonFontFamily="pack://application:,,,/Font/KCC-Ganpan.ttf#KCC-Ganpan"
+                                             ButtonCornerRadius="15" Margin="10 2.5 10 2.5"/>
+                    </Grid>
+                    <!--Task Button-->
+                    <!--Waffle Button-->
+                    <Grid Grid.Row="2">
+                        <control:RoundButton x:Name="btn_Waffle" ButtonText="WAFFLE" ButtonBorderBrush="Transparent"
+                                             ButtonForeground="Black" ButtonFontSize="20" ButtonColor="#7ED957" 
+                                             ButtonFontFamily="pack://application:,,,/Font/KCC-Ganpan.ttf#KCC-Ganpan"
+                                             Margin="10 2.5 10 5" ButtonCornerRadius="15"/>
+                    </Grid>
+                    <!--Waffle Button-->
+                </Grid>
+                <!--Swith Area-->
+                <!--Anniversity Area-->
+                <Grid x:Name="grid_annv" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <!--Anniversity Title-->
+                    <Label x:Name="lb_annv_title" Grid.Row="0" Content="0000. 00. 00 (DoW)" Foreground="Black"
+                           FontFamily="pack://application:,,,/Font/KCC-Ganpan.ttf#KCC-Ganpan" FontWeight="Bold"
+                           FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <!--Anniversity Title-->
+                    <!--Anniversity List-->
+                    <StackPanel x:Name="sp_annv_list" Grid.Row="1" Orientation="Vertical" Margin="0 0 0 10"/>
+                </Grid>
+                <!--Anniversity Area-->
+                <!--D-Day Area-->
+                <Grid x:Name="grid_dday" Grid.Column="2">
+                    <StackPanel x:Name="sp_dday" Orientation="Vertical" Margin="0 10 0 10"/>
+                </Grid>
+            </Grid>
+            <!--Date Area-->
+            
+            <!--Information Area-->
+            <Grid x:Name="grid_info_area" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--Tags-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Border x:Name="bd_tags_comp_background" Background="#ffd8a3" BorderBrush="Transparent"/>
+                    <Border x:Name="bd_tags_comp" Background="#08a400" BorderBrush="Black" 
+                            BorderThickness="0 0 0 2" CornerRadius="12 12 0 0"/>
+                    <Label x:Name="lb_tags_comp" Content="완료된 일정" Foreground="White" Padding="0" Margin="0 -3 0 0"
+                           FontFamily="pack://application:,,,/Font/Dongle-Bold.ttf#Dongle" FontSize="20"
+                           BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Border x:Name="bd_tags_incomp_background" Background="#ffd8a3" BorderBrush="Transparent"/>
+                    <Border x:Name="bd_tags_incomp" Background="#a80000" BorderBrush="Black" 
+                            BorderThickness="0 0 0 2" CornerRadius="12 12 0 0"/>
+                    <Label x:Name="lb_tags_incomp" Content="미 완료된 일정" Foreground="White" Padding="0" Margin="0 -3 0 0"
+                           FontFamily="pack://application:,,,/Font/Dongle-Bold.ttf#Dongle" FontSize="20"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                <StackPanel x:Name="sp_info_comp" Grid.Column="0" Grid.Row="1" Orientation="Vertical" Margin="0"/>
+                <StackPanel x:Name="sp_info_incomp" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0"/>
+            </Grid>
+            <!--Information Area-->
+        </Grid>
+        <!--Content-->
+    </Grid>
+</Window>

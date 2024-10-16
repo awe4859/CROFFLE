@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="AnniversaryAPI">
+      <HintPath>DLLs\AnniversaryAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="CroffleDataManager">
+      <HintPath>DLLs\CroffleDataManager.dll</HintPath>
+    </Reference>
+    <Reference Include="HttpManager">
+      <HintPath>DLLs\HttpManager.dll</HintPath>
+    </Reference>
+    <Reference Include="WaffleHttp">
+      <HintPath>DLLs\WaffleHttp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
