@@ -1,0 +1,51 @@
+﻿<Page x:Class="CROFFLE.xamls.Pages.Task_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CROFFLE.xamls.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="400"
+      Title="Task_Page">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0,109,0,0" Grid.ColumnSpan="2"/>
+        <Grid Grid.Column="1" HorizontalAlignment="Center" Height="400" VerticalAlignment="Center" Width="90">
+            <Border BorderBrush="Black" BorderThickness="1" Background="#FFB1B1B1">
+                <Border BorderBrush="Black" BorderThickness="1" Background="#FF63D6C9" Margin="-1,-1,-1,365" Grid.Row="1">
+                    <Label Content="분류" HorizontalAlignment="Left" VerticalAlignment="Center" Width="90" FontFamily="KCC-Ganpan" Foreground="Black" FontSize="18" Height="32" Margin="19,0,0,0"/>
+                </Border>
+            </Border>
+        </Grid>
+
+        <Label Content="모든 일정 확인하기" HorizontalAlignment="Left" Margin="112,28,0,0" VerticalAlignment="Top" Width="176" FontFamily="KCC-Ganpan" Foreground="Black" FontSize="18" Height="32"/>
+
+        <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="20" Width="50" CornerRadius="4" Margin="0,50,0,0">
+            <Button Content="완료" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Margin="0,-2,0,0" Width="50" FontFamily="KCC-Ganpan"/>
+        </Border>
+        <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="20" Width="50" CornerRadius="4" Margin="0,120,0,0">
+            <Button Content="미완료" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Margin="0,-2,0,0" Width="50" FontFamily="KCC-Ganpan"/>
+        </Border>
+        <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="20" Width="50" CornerRadius="4">
+            <Button Content="과제" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Width="50" FontFamily="KCC-Ganpan"/>
+        </Border>
+        <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="20" Width="50" CornerRadius="4" Margin="0,260,0,0">
+            <Button Content="영상" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Margin="0,-1,0,0" Width="50" FontFamily="KCC-Ganpan"/>
+        </Border>
+        <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="20" Width="50" CornerRadius="4" Margin="0,330,0,0">
+            <Button Content="퀴즈" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Margin="0,-1,0,0" Width="50" FontFamily="KCC-Ganpan"/>
+        </Border>
+
+
+
+
+
+    </Grid>
+</Page>

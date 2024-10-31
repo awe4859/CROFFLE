@@ -30,6 +30,7 @@
     <None Remove="Font\LeagueSpartan-Regular.ttf" />
     <None Remove="Font\LeagueSpartan-SemiBold.ttf" />
     <None Remove="Font\LeagueSpartan-Thin.ttf" />
+    <None Remove="xamls\Controls\file-lines-regular.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -97,6 +98,7 @@
     <Resource Include="Font\LeagueSpartan-Thin.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="xamls\Controls\file-lines-regular.png" />
   </ItemGroup>
 
 </Project>
