@@ -34,13 +34,13 @@
             <Button Content="미완료" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Margin="0,-2,0,0" Width="50" FontFamily="KCC-Ganpan"/>
         </Border>
         <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="20" Width="50" CornerRadius="4">
-            <Button Content="과제" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Width="50" FontFamily="KCC-Ganpan"/>
+            <Button Content="과제" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#FFDC4343" Width="50" FontFamily="KCC-Ganpan"/>
         </Border>
         <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="20" Width="50" CornerRadius="4" Margin="0,260,0,0">
-            <Button Content="영상" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Margin="0,-1,0,0" Width="50" FontFamily="KCC-Ganpan"/>
+            <Button Content="영상" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#FF3CED2D" Margin="0,-1,0,0" Width="50" FontFamily="KCC-Ganpan"/>
         </Border>
         <Border Grid.Column="1" Background="#FF3CB1FF" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="20" Width="50" CornerRadius="4" Margin="0,330,0,0">
-            <Button Content="퀴즈" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Background="#00000000" Margin="0,-1,0,0" Width="50" FontFamily="KCC-Ganpan"/>
+            <Button Content="퀴즈" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" IsDefault="True" BorderBrush="{x:Null}" Margin="0,-1,0,0" Width="50" FontFamily="KCC-Ganpan" Background="#FFEDDD2D"/>
         </Border>
 
 
